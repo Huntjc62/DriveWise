@@ -1,38 +1,23 @@
-# DriveWise — Multi-page package
+# DriveWise v2 — fixed multi-page package
 
-This version is deliberately split into separate pages instead of one large index file.
+The previous build used root-absolute paths such as `/assets/app.js`. Those can fail when the ZIP is opened locally or hosted in a sub-folder. This version uses relative paths throughout.
 
-## Structure
-
-- `index.html` — public editorial homepage
-- `pages/guides.html` — news and guides library
-- `pages/article.html` — individual article page
-- `pages/account.html` — member account
+Pages:
+- `index.html` — public homepage
+- `pages/guides.html` — news/guides
+- `pages/article.html` — individual article
+- `pages/account.html` — account
 - `pages/garage.html` — My Garage
-- `pages/cars.html` — used-car search
-- `pages/parts.html` — parts search/comparison
+- `pages/cars.html` — car search
+- `pages/parts.html` — parts
 - `pages/mods.html` — modification planner
-- `pages/mod-library.html` — public modification education
+- `pages/mod-library.html` — public mod library
 - `pages/admin-login.html` — admin login
-- `pages/admin.html` — admin CMS
-- `assets/style.css` — shared styling
-- `assets/data.js` — seed content and vehicle data
-- `assets/app.js` — shared application logic
-- `firebase-config.example.js` — production Firebase placeholder
+- `pages/admin.html` — CMS
 
-## Product model
+Demo admin:
+`admin` / `admin123`
 
-Public first:
-News, buying guides, modification guides, comparisons and DriveWise Monthly are readable without an account.
+For testing, extract the package and run `python -m http.server 8000`, then open `http://localhost:8000/`.
 
-Members:
-Creating an account unlocks My Garage, car search and parts/modification tools.
-
-Admin:
-Demo credentials are `admin` / `admin123`.
-
-## Important
-
-The demo account/admin and data storage use browser storage so the package can be tested without a backend. Before production, replace this with Firebase Authentication + Firestore. Never store passwords in localStorage in a production application.
-
-For true SEO production deployment, host each article at its own URL and generate canonical URLs, sitemap.xml, robots.txt, Open Graph metadata and Article/NewsArticle structured data.
+The prototype uses localStorage/sessionStorage. Production should use Firebase Authentication + Firestore.
