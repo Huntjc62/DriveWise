@@ -118,12 +118,50 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 @media(max-width:900px){.mod-library-hero{grid-template-columns:1fr}.mod-library-grid{grid-template-columns:repeat(2,1fr)}.mod-detail-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.mod-library-grid,.mod-detail-grid{grid-template-columns:1fr}.mod-library-cta{display:block}.mod-library-cta .btn{margin-top:14px}}
 </style>
+
+<style id="my-garage-styles">
+.garage-page{display:none;padding:55px 0 90px}
+.garage-welcome{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch;margin-bottom:22px}
+.garage-builder,.garage-visual{background:linear-gradient(145deg,#151b21,#0d1013);border:1px solid #2a323b;border-radius:24px;padding:28px}
+.garage-builder h1{font-size:clamp(44px,5vw,68px);line-height:.94;margin:12px 0;letter-spacing:-.065em}
+.garage-builder p{color:#9da6b0;max-width:620px}
+.full-car-form{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+.full-car-form .wide{grid-column:1/-1}
+.full-car-field label{display:block;color:#9da6b0;font-size:11px;margin-bottom:6px}
+.full-car-field select,.full-car-field input{width:100%;background:#0a0d10;border:1px solid #303841;color:#fff;padding:12px;border-radius:9px;outline:none}
+.full-car-field select:focus,.full-car-field input:focus{border-color:#d7ff3f}
+.garage-visual{min-height:420px;display:flex;flex-direction:column}
+.garage-visual-head{display:flex;justify-content:space-between;gap:15px;align-items:start}
+.garage-visual h2{font-size:28px;margin:0}.garage-visual p{color:#9da6b0;font-size:13px;margin:4px 0}
+.car-outline-wrap{flex:1;display:grid;place-items:center;min-height:290px;position:relative}
+.car-outline-wrap:after{content:"";position:absolute;left:10%;right:10%;bottom:38px;height:1px;background:#2e363e}
+.car-outline{width:92%;max-width:590px;height:auto;overflow:visible}
+.car-outline *{vector-effect:non-scaling-stroke}
+.car-outline .body{fill:rgba(215,255,63,.035);stroke:#d7ff3f;stroke-width:2.2}
+.car-outline .window{fill:rgba(255,255,255,.035);stroke:#8c989f;stroke-width:1.5}
+.car-outline .detail{fill:none;stroke:#657078;stroke-width:1.3}
+.car-outline .wheel{fill:#0a0d10;stroke:#d7ff3f;stroke-width:2}
+.car-outline .hub{fill:none;stroke:#657078;stroke-width:1.2}
+.car-outline-label{position:absolute;bottom:7px;color:#59636c;font-size:10px;letter-spacing:.13em;text-transform:uppercase}
+.garage-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.garage-profile{display:none;margin-top:20px;background:#11170a;border:1px solid #39471a;border-radius:18px;padding:20px}
+.garage-profile h2{margin:0 0 5px;font-size:25px}.garage-profile p{margin:0;color:#9da6b0;font-size:13px}
+.garage-profile-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}
+.garage-mini{background:#0b0e11;border:1px solid #252c33;border-radius:10px;padding:11px}.garage-mini small{display:block;color:#7f8993;font-size:10px;text-transform:uppercase}.garage-mini b{font-size:13px}
+.garage-tools{margin-top:22px}.garage-tools h2{font-size:34px;margin:0 0 8px}.garage-tools>p{color:#9da6b0}
+.garage-tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.garage-tool-card{background:#11151a;border:1px solid #2a323b;border-radius:17px;padding:20px;cursor:pointer;transition:.2s}
+.garage-tool-card:hover{transform:translateY(-3px);border-color:#566529}.garage-tool-card .i{font-size:25px}.garage-tool-card h3{margin:12px 0 5px}.garage-tool-card p{font-size:12px;color:#9da6b0;margin:0}
+.garage-tool-card span{display:block;color:#d7ff3f;font-size:11px;font-weight:900;margin-top:14px}
+@media(max-width:900px){.garage-welcome{grid-template-columns:1fr}.garage-tool-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.full-car-form{grid-template-columns:1fr}.full-car-form .wide{grid-column:auto}.garage-profile-grid{grid-template-columns:repeat(2,1fr)}.garage-tool-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <header>
   <div class="container nav">
     <a class="logo" href="#" onclick="showHome();return false;">DRIVE<span>WISE</span></a>
-    <nav class="navlinks"><a href="#" onclick="openSection('used');return false;">Pre-Owned</a><a href="#" onclick="openSection('mods');return false;">Mods</a><a href="#" onclick="showModLibrary();return false;">Mod Library</a><a href="#guides">Guides</a><a href="#" onclick="showAdminLogin();return false;">Admin</a></nav>
+    <nav class="navlinks"><a href="#" onclick="openSection('used');return false;">Pre-Owned</a><a href="#" onclick="showGarage();return false;">My Garage</a><a href="#" onclick="openSection('mods');return false;">Mods</a><a href="#" onclick="showModLibrary();return false;">Mod Library</a><a href="#guides">Guides</a><a href="#" onclick="showAdminLogin();return false;">Admin</a></nav>
   </div>
 </header>
 
@@ -249,6 +287,70 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 
 
 
+
+
+<section id="garagePage" class="garage-page">
+<div class="container">
+  <div class="back" onclick="showHome()">← Back to home</div>
+  <div class="garage-welcome">
+    <div class="garage-builder">
+      <div class="eyebrow">My Garage</div>
+      <h1>Your car.<br><span style="color:var(--accent)">Your build.</span></h1>
+      <p>Enter the full details of your car so DriveWise can make your garage the starting point for finding parts, researching modifications and building your project.</p>
+
+      <div class="full-car-form">
+        <div class="full-car-field"><label>Make</label><select id="myGarageMake"><option value="">Choose make</option></select></div>
+        <div class="full-car-field"><label>Model</label><select id="myGarageModel" disabled><option>Choose model</option></select></div>
+        <div class="full-car-field"><label>Year</label><select id="myGarageYear" disabled><option>Choose year</option></select></div>
+        <div class="full-car-field"><label>Trim / full model</label><input id="myGarageTrim" placeholder="e.g. ST-3, Titanium, M Sport, GTI"></div>
+        <div class="full-car-field"><label>Engine</label><input id="myGarageEngine" placeholder="e.g. 1.5 EcoBoost 200PS"></div>
+        <div class="full-car-field"><label>Fuel</label><select id="myGarageFuel"><option value="">Choose fuel</option><option>Petrol</option><option>Diesel</option><option>Hybrid</option><option>Plug-in hybrid</option><option>Electric</option></select></div>
+        <div class="full-car-field"><label>Gearbox</label><select id="myGarageGear"><option value="">Choose gearbox</option><option>Manual</option><option>Automatic</option><option>DSG / dual-clutch</option><option>CVT</option></select></div>
+        <div class="full-car-field"><label>Registration (optional)</label><input id="myGarageReg" placeholder="e.g. AB12 CDE" maxlength="8"></div>
+        <div class="full-car-field wide"><label>Garage nickname (optional)</label><input id="myGarageNickname" placeholder="e.g. The Fiesta, Project ST, Daily Driver"></div>
+      </div>
+      <div class="garage-actions">
+        <button class="btn" onclick="saveMyGarage()">Save my car</button>
+        <button class="parkers-btn" onclick="clearMyGarage()">Clear</button>
+      </div>
+      <div class="notice">For exact parts compatibility, use the registration/VIN with the retailer before ordering. The garage stores your details locally in this prototype.</div>
+    </div>
+
+    <div class="garage-visual">
+      <div class="garage-visual-head">
+        <div><div class="eyebrow">Garage preview</div><h2 id="garageVisualTitle">Add your car</h2><p id="garageVisualSubtitle">Your car outline will appear here.</p></div>
+        <span class="tag">MY GARAGE</span>
+      </div>
+      <div class="car-outline-wrap" id="carOutlineWrap">
+        <svg id="carOutline" class="car-outline" viewBox="0 0 900 430" role="img" aria-label="Vehicle outline preview">
+          <path class="body" d="M93 295 C112 267 154 254 220 247 L296 151 C320 121 354 103 405 99 L560 99 C612 101 647 120 681 151 L748 232 C796 241 826 257 838 284 L847 314 L827 333 L752 333 C746 364 723 381 690 381 C654 381 631 363 625 333 L274 333 C268 363 245 381 210 381 C176 381 151 364 145 333 L92 333 C82 325 81 309 93 295 Z"/>
+          <path class="window" d="M302 148 L356 112 C370 104 391 99 416 99 L480 99 L480 197 L266 197 Z"/>
+          <path class="window" d="M494 99 L555 100 C589 102 616 116 639 140 L688 197 L494 197 Z"/>
+          <path class="detail" d="M263 197 L688 197 M338 111 L338 197 M632 139 L632 197 M115 287 L205 287 M695 235 L807 257"/>
+          <path class="detail" d="M389 248 L612 248 M407 263 L592 263"/>
+          <circle class="wheel" cx="210" cy="330" r="51"/><circle class="hub" cx="210" cy="330" r="22"/>
+          <circle class="wheel" cx="690" cy="330" r="51"/><circle class="hub" cx="690" cy="330" r="22"/>
+        </svg>
+        <div class="car-outline-label">Representative vehicle outline · exact silhouette varies by model</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="garageProfile" class="garage-profile"></div>
+
+  <div class="garage-tools">
+    <div class="eyebrow">Garage tools</div>
+    <h2>What do you want to do?</h2>
+    <p>Once your car is saved, use it as the starting point for every modification and parts search.</p>
+    <div class="garage-tool-grid">
+      <div class="garage-tool-card" onclick="openGarageParts()"><div class="i">🔩</div><h3>Find parts</h3><p>Compare suspension, brakes, exhausts, wheels and more across three retailers.</p><span>Find parts →</span></div>
+      <div class="garage-tool-card" onclick="openGarageMods()"><div class="i">🔧</div><h3>Plan modifications</h3><p>Build a modification plan around your exact car and your goal.</p><span>Plan my build →</span></div>
+      <div class="garage-tool-card" onclick="showModLibrary()"><div class="i">📚</div><h3>Mod Library</h3><p>Learn what each modification changes before you spend money.</p><span>Explore library →</span></div>
+      <div class="garage-tool-card" onclick="garageAutoTrader()"><div class="i">🚗</div><h3>Find another car</h3><p>Search Auto Trader if you're comparing your current car with another example.</p><span>Search Auto Trader →</span></div>
+    </div>
+  </div>
+</div>
+</section>
 
 <section id="modLibraryPage" class="mod-library-page">
 <div class="container">
@@ -377,8 +479,8 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <footer><div class="container">© 2026 DriveWise. Built for people who care what they drive. <span style="float:right">Information only — always check UK roadworthiness, insurance and modification requirements before making changes.</span></div></footer>
 
 <script>
-function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
-function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
 
 function modPlan(){
  const goal=document.getElementById('modgoal').value,budget=Number(document.getElementById('modbudget').value)||0,road=document.getElementById('roaduse').value;
@@ -389,6 +491,99 @@ function modPlan(){
 showHome();
 
 
+
+
+// ---------------- DriveWise My Garage ----------------
+const garageCarBody={};
+function populateMyGarageMakes(){
+ const s=document.getElementById('myGarageMake');
+ if(!s)return;
+ populateSelect(s,Object.keys(garageModels).sort((a,b)=>a.localeCompare(b)),'Choose make');
+}
+function populateMyGarageModels(){
+ const make=document.getElementById('myGarageMake').value, model=document.getElementById('myGarageModel'), year=document.getElementById('myGarageYear');
+ populateSelect(model,garageModels[make]||[],'Choose model');model.disabled=!garageModels[make];
+ populateSelect(year,[],'Choose year');year.disabled=true;
+}
+function populateMyGarageYears(){
+ const make=document.getElementById('myGarageMake').value, model=document.getElementById('myGarageModel').value, year=document.getElementById('myGarageYear');
+ const years=garageModels[make]?.includes(model)?Array.from({length:garageYearEnd-garageYearStart+1},(_,i)=>garageYearStart+i):[];
+ populateSelect(year,years,'Choose year');year.disabled=!years.length;
+}
+function vehicleShape(model,trim=''){
+ const s=(model+' '+trim).toLowerCase();
+ if(/mx-5|z4|tt|boxster|cayman|a110|124 spider|s2000|gr86|gt86|supra|mustang|brz/.test(s))return 'coupe';
+ if(/ranger|hilux|d-max|l200|amarok|gladiator/.test(s))return 'pickup';
+ if(/q2|q3|q4|q5|q7|q8|x1|x2|x3|x4|x5|x6|x7|eqa|eqb|eqc|eqe suv|eqs suv|gla|glb|glc|gle|gls|kuga|puma|edge|tucson|sportage|sorento|rav4|c-hr|yaris cross|kona|cr-v|hr-v|cx-3|cx-5|cx-30|cx-60|xc40|xc60|xc90|duster|dacia|ateca|karoq|kodiaq|t-roc|tiguan|touareg|arona|tarraco|enyaq|eclipse cross|outlander|forester|outback|wrangler|cherokee|compass|renegade|defender|discovery|range rover|stelvio|tonale|macan|cayenne|urus|bentayga/.test(s))return 'suv';
+ if(/estate|touring|avant|wagon|v70|v90|octavia|superb|focus estate|5 series touring|3 series touring/.test(s))return 'estate';
+ return 'hatch';
+}
+function renderGarageOutline(){
+ const make=document.getElementById('myGarageMake').value,model=document.getElementById('myGarageModel').value,year=document.getElementById('myGarageYear').value,trim=document.getElementById('myGarageTrim').value;
+ const title=document.getElementById('garageVisualTitle'),sub=document.getElementById('garageVisualSubtitle');
+ title.textContent=model?(trim?`${make} ${model} ${trim}`:`${make} ${model}`):'Add your car';
+ sub.textContent=model?`${year||'Year not selected'} · ${vehicleShape(model,trim)}-style vehicle outline`:'Your car outline will appear here.';
+ // The outline is a representative shape chosen from the selected model category.
+ const svg=document.getElementById('carOutline');
+ svg.setAttribute('aria-label',model?`Representative outline of ${make} ${model}`:'Vehicle outline preview');
+}
+function saveMyGarage(){
+ const make=document.getElementById('myGarageMake').value,model=document.getElementById('myGarageModel').value,year=document.getElementById('myGarageYear').value,trim=document.getElementById('myGarageTrim').value,engine=document.getElementById('myGarageEngine').value,fuel=document.getElementById('myGarageFuel').value,gear=document.getElementById('myGarageGear').value,reg=document.getElementById('myGarageReg').value,nickname=document.getElementById('myGarageNickname').value;
+ if(!make||!model||!year){alert('Please choose your make, model and year first.');return}
+ const car={make,model,year,trim,engine,fuel,gear,reg,nickname,savedAt:Date.now()};
+ localStorage.setItem('drivewiseGarageCar',JSON.stringify(car));
+ renderGarageProfile(car);renderGarageOutline();
+}
+function loadMyGarage(){
+ const raw=localStorage.getItem('drivewiseGarageCar');if(!raw)return;
+ try{
+  const c=JSON.parse(raw);
+  document.getElementById('myGarageMake').value=c.make||'';populateMyGarageModels();
+  document.getElementById('myGarageModel').value=c.model||'';populateMyGarageYears();
+  document.getElementById('myGarageYear').value=c.year||'';
+  document.getElementById('myGarageTrim').value=c.trim||'';
+  document.getElementById('myGarageEngine').value=c.engine||'';
+  document.getElementById('myGarageFuel').value=c.fuel||'';
+  document.getElementById('myGarageGear').value=c.gear||'';
+  document.getElementById('myGarageReg').value=c.reg||'';
+  document.getElementById('myGarageNickname').value=c.nickname||'';
+  renderGarageProfile(c);renderGarageOutline();
+ }catch(e){}
+}
+function renderGarageProfile(c){
+ const el=document.getElementById('garageProfile');el.style.display='block';
+ const title=c.nickname||`${c.make} ${c.model} ${c.trim||''}`.replace(/\s+/g,' ').trim();
+ el.innerHTML=`<div class="eyebrow">Saved car</div><h2>${title}</h2><p>${c.year} ${c.engine?'· '+c.engine:''} ${c.fuel?'· '+c.fuel:''} ${c.gear?'· '+c.gear:''}</p><div class="garage-profile-grid"><div class="garage-mini"><small>Make</small><b>${c.make}</b></div><div class="garage-mini"><small>Model</small><b>${c.model}</b></div><div class="garage-mini"><small>Trim</small><b>${c.trim||'Not added'}</b></div><div class="garage-mini"><small>Registration</small><b>${c.reg||'Not added'}</b></div></div>`;
+}
+function showGarage(){
+ document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('garagePage').style.display='block';
+ window.scrollTo(0,0);populateMyGarageMakes();loadMyGarage();trackPage();
+}
+function clearMyGarage(){
+ localStorage.removeItem('drivewiseGarageCar');
+ ['myGarageModel','myGarageYear'].forEach(id=>{const s=document.getElementById(id);s.innerHTML='<option>Choose model</option>';s.disabled=true});
+ ['myGarageMake','myGarageTrim','myGarageEngine','myGarageReg','myGarageNickname'].forEach(id=>document.getElementById(id).value='');
+ document.getElementById('myGarageFuel').value='';document.getElementById('myGarageGear').value='';
+ document.getElementById('garageProfile').style.display='none';renderGarageOutline();
+}
+function openGarageParts(){
+ const c=JSON.parse(localStorage.getItem('drivewiseGarageCar')||'null');
+ if(!c){alert('Save your car in My Garage first.');return}
+ openSection('mods');
+ document.getElementById('garageMake').value=c.make;fillGarageModels();document.getElementById('garageModel').value=c.model;fillGarageYears();document.getElementById('garageYear').value=c.year;
+ document.getElementById('garagePart').value='suspension';
+ compareGarageParts();
+}
+function openGarageMods(){openSection('mods');document.getElementById('modgoal')?.focus()}
+function garageAutoTrader(){
+ const c=JSON.parse(localStorage.getItem('drivewiseGarageCar')||'null');
+ if(!c){alert('Save your car in My Garage first.');return}
+ window.open(`https://www.autotrader.co.uk/cars/used/${encodeURIComponent(c.make.toLowerCase())}/${encodeURIComponent(c.model.toLowerCase().replace(/\s+/g,'-'))}`,'_blank','noopener');
+}
+document.getElementById('myGarageMake')?.addEventListener('change',()=>{populateMyGarageModels();renderGarageOutline()});
+document.getElementById('myGarageModel')?.addEventListener('change',()=>{populateMyGarageYears();renderGarageOutline()});
+document.getElementById('myGarageYear')?.addEventListener('change',renderGarageOutline);
+document.getElementById('myGarageTrim')?.addEventListener('input',renderGarageOutline);
 
 // ---------------- DriveWise standalone Mod Library ----------------
 const modLibraryData={
@@ -591,6 +786,7 @@ function currentPage(){
   if(document.getElementById('mods').style.display==='block') return 'Car Mods';
   if(document.getElementById('shortlistPage').style.display==='block') return 'Car Shortlist';
   if(document.getElementById('modLibraryPage').style.display==='block') return 'Mod Library';
+  if(document.getElementById('garagePage').style.display==='block') return 'My Garage';
   if(document.getElementById('adminShell').style.display==='block') return 'Admin Dashboard';
   return 'Homepage';
 }

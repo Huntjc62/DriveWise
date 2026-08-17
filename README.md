@@ -1,24 +1,29 @@
-# DriveWise v10
+# DriveWise v11
 
-Added a standalone Mod Library page based on the supplied design.
+Major My Garage upgrade.
 
-Features:
-- Dedicated Mod Library page
-- 12 modification categories
-- Wheels & tyres
-- Suspension
-- Brakes
-- Exhaust
-- Intake
-- ECU tuning
-- Bodywork
-- Interior
-- Lighting
-- Audio
-- Cooling
-- Detailing
-- Each category opens an on-page guide with practical subtopics
-- My Garage CTA from the library
-- Added Mod Library to the main navigation
-- Analytics recognises the Mod Library as its own page
-- Existing pre-owned shortlist, Auto Trader/Parkers links, parts comparison, admin dashboard and SEO tools retained
+New default journey:
+Homepage -> Open My Garage -> enter exact car details -> find parts / plan mods / Mod Library / Auto Trader.
+
+My Garage fields:
+- Make
+- Model
+- Year
+- Trim / full model (e.g. ST-3)
+- Engine
+- Fuel
+- Gearbox
+- Registration
+- Garage nickname
+
+Garage features:
+- Saves the car locally in this prototype
+- Renders a representative vehicle outline based on the selected car/body category
+- Shows the saved vehicle profile
+- Find Parts opens the existing three-retailer comparison pre-filled with the garage vehicle
+- Plan Modifications opens the modification workflow
+- Mod Library link
+- Auto Trader search for the saved vehicle
+- Garage is now the main welcome action instead of Explore Car Mods
+
+Important: the outline is a representative SVG silhouette selected by vehicle category. It is not a photographic/exact body CAD silhouette. For exact model-specific silhouettes, the next production step would be to add licensed vehicle SVG/image assets for individual model/generation combinations.
