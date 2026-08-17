@@ -211,12 +211,29 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 .published-row .parkers-btn{font-size:11px;padding:7px 10px}
 .editing-note{background:#11170a;border:1px solid #39471a;border-radius:10px;padding:10px;margin-top:12px;color:#b7c08f;font-size:12px}
 </style>
+
+<style id="v17-membership-styles">
+.member-gate{display:none;position:fixed;inset:0;background:rgba(5,7,9,.88);z-index:10000;align-items:center;justify-content:center;padding:20px}
+.member-box{width:min(480px,100%);background:#11151a;border:1px solid #303841;border-radius:22px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.member-box h2{font-size:34px;line-height:1;margin:8px 0 10px}.member-box p{color:#9da6b0;font-size:13px}
+.member-form{display:grid;gap:10px;margin-top:20px}.member-form input{width:100%;box-sizing:border-box;background:#0b0e11;border:1px solid #303841;color:#fff;padding:12px;border-radius:8px}
+.member-switch{margin-top:14px;color:#8d969e;font-size:12px}.member-switch button{background:none;border:0;color:#d7ff3f;cursor:pointer;font-weight:800}
+.member-user{display:none;align-items:center;gap:8px}.member-user button{border:1px solid #303841;background:#151a20;color:#dce1e5;border-radius:99px;padding:7px 10px;font-size:11px;cursor:pointer}
+.public-home{padding:55px 0 90px}.public-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:end;margin-bottom:28px}.public-hero h1{font-size:clamp(52px,7vw,88px);line-height:.9;letter-spacing:-.07em;margin:10px 0 18px}.public-hero p{color:#9da6b0;max-width:700px;font-size:16px}
+.public-news-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-bottom:28px}.public-feature{background:linear-gradient(145deg,#171d23,#0f1408);border:1px solid #39471a;border-radius:24px;padding:30px;min-height:280px;display:flex;flex-direction:column;justify-content:end}.public-feature h2{font-size:38px;line-height:1;margin:10px 0}.public-feature p{color:#aeb6bd;max-width:700px}.public-side{display:grid;gap:16px}.public-side-card{background:#11151a;border:1px solid #2a323b;border-radius:18px;padding:21px}.public-side-card h3{margin:8px 0;font-size:21px}.public-side-card p{color:#9da6b0;font-size:12px}
+.public-section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:30px 0 15px}.public-section-head h2{font-size:32px;margin:0}.public-section-head p{color:#9da6b0;font-size:12px}
+.member-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.member-tool{background:#11151a;border:1px solid #2a323b;border-radius:18px;padding:22px;cursor:pointer}.member-tool:hover{border-color:#566529;transform:translateY(-2px)}.member-tool .i{font-size:28px}.member-tool h3{margin:10px 0 5px}.member-tool p{font-size:12px;color:#9da6b0}.member-tool span{display:block;color:#d7ff3f;font-size:11px;font-weight:900;margin-top:14px}
+.account-page{display:none;padding:55px 0 90px}.account-shell{max-width:1000px;margin:auto}.account-hero{background:linear-gradient(145deg,#171d23,#0f1408);border:1px solid #39471a;border-radius:24px;padding:30px}.account-hero h1{font-size:48px;margin:8px 0}.account-hero p{color:#9da6b0}.account-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:18px}.account-card{background:#11151a;border:1px solid #2a323b;border-radius:18px;padding:22px}.account-card h2{margin:0 0 7px}.account-card p{color:#9da6b0;font-size:13px}
+.auth-required{display:none}
+.member-badge{display:inline-block;background:#d7ff3f;color:#080a0d;border-radius:99px;padding:6px 10px;font-size:10px;font-weight:900;letter-spacing:.08em}
+@media(max-width:850px){.public-hero,.public-news-grid{grid-template-columns:1fr}.member-tools,.account-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <header>
   <div class="container nav">
     <a class="logo" href="#" onclick="showHome();return false;">DRIVE<span>WISE</span></a>
-    <nav class="navlinks"><a href="#" onclick="openSection('used');return false;">Pre-Owned</a><a href="#" onclick="showGarage();return false;">My Garage</a><a href="#" onclick="openSection('mods');return false;">Mods</a><a href="#" onclick="showModLibrary();return false;">Mod Library</a><a href="#" onclick="showGuides();return false;">Guides</a><a href="#" onclick="showAdminLogin();return false;">Admin</a></nav>
+    <nav class="navlinks"><a href="#" onclick="showGuides();return false;">News & Guides</a><a href="#" onclick="openMemberArea('garage');return false;">My Garage</a><a href="#" onclick="openMemberArea('search');return false;">Search Cars</a><a href="#" onclick="openMemberArea('parts');return false;">Find Parts</a><a href="#" onclick="showAdminLogin();return false;">Admin</a></nav><div id="memberUser" class="member-user"><span id="memberUserName"></span><button onclick="showAccount();return false;">Account</button><button onclick="memberLogout();return false;">Log out</button></div>
   </div>
 </header>
 
@@ -243,6 +260,30 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <main id="used">
 <section class="page">
 <div class="container">
+<div id="editorialHome" class="public-home">
+<div class="container">
+  <div class="public-hero">
+    <div>
+      <span class="member-badge">DRIVEWISE · NEWS & GUIDES</span>
+      <h1>Cars worth<br><span style="color:var(--accent)">knowing about.</span></h1>
+      <p>Used-car buying guides, modification advice, car news and practical ownership content. Read everything for free. Create an account when you're ready to add your car, search vehicles or find parts.</p>
+      <div class="garage-actions">
+        <button class="btn" onclick="showGuides()">Read the latest →</button>
+        <button class="parkers-btn" onclick="openMemberArea('garage')">Create my garage →</button>
+      </div>
+    </div>
+    <div class="public-side-card"><div class="eyebrow">Free to read</div><h3>Knowledge first. Tools when you need them.</h3><p>DriveWise starts as a car publication. Your account unlocks the personalised tools once you want to use them.</p></div>
+  </div>
+  <div id="publicHomeEditorial"></div>
+  <div class="public-section-head"><div><div class="eyebrow">For members</div><h2>Your car, your tools.</h2></div><p>Create a free account to unlock these features.</p></div>
+  <div class="member-tools">
+    <div class="member-tool" onclick="openMemberArea('garage')"><div class="i">🛠️</div><h3>My Garage</h3><p>Add your exact make, model, year, trim, engine and registration.</p><span>Open My Garage →</span></div>
+    <div class="member-tool" onclick="openMemberArea('search')"><div class="i">🚗</div><h3>Search Cars</h3><p>Explore used cars and build your own shortlist once you're signed in.</p><span>Search cars →</span></div>
+    <div class="member-tool" onclick="openMemberArea('parts')"><div class="i">🔩</div><h3>Find Parts</h3><p>Use your saved car to find and compare modification parts.</p><span>Find parts →</span></div>
+  </div>
+</div>
+</div>
+
   <div class="back" onclick="showHome()">← Back to home</div>
   <div class="section-head"><div><div class="eyebrow">Pre-owned</div><h2>Buy the car, not the headache.</h2></div><p>A pre-owned car can give you far more for your money — if you know what to look for. Start with your requirements, then narrow down the cars that fit.</p></div>
   <div class="feature">
@@ -357,6 +398,24 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <div class="container">
   <div class="back" onclick="showGuides()">← Back to Guides</div>
   <article id="guideReader" class="guide-reader"></article>
+</div>
+</section>
+
+
+<section id="accountPage" class="account-page">
+<div class="container account-shell">
+  <div class="back" onclick="showHome()">← Back to DriveWise</div>
+  <div class="account-hero">
+    <span class="member-badge">MEMBER ACCOUNT</span>
+    <h1 id="accountHeading">Welcome to DriveWise</h1>
+    <p id="accountSubheading">Your account unlocks personalised car tools.</p>
+  </div>
+  <div class="account-grid">
+    <div class="account-card"><h2>🛠️ My Garage</h2><p>Save your exact vehicle and use it as the starting point for parts and modification searches.</p><button class="btn" onclick="showGarage()">Open Garage →</button></div>
+    <div class="account-card"><h2>🚗 Search Cars</h2><p>Search for used cars and build a shortlist based on what matters to you.</p><button class="btn" onclick="openSection('used')">Search cars →</button></div>
+    <div class="account-card"><h2>🔩 Find Parts</h2><p>Compare parts for your saved car and research upgrades.</p><button class="btn" onclick="openSection('mods')">Find parts →</button></div>
+    <div class="account-card"><h2>📚 Read Guides</h2><p>Keep learning about buying, ownership and modifications.</p><button class="parkers-btn" onclick="showGuides()">Browse guides →</button></div>
+  </div>
 </div>
 </section>
 
@@ -626,7 +685,8 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <footer><div class="container">© 2026 DriveWise. Built for people who care what they drive. <span style="float:right">Information only — always check UK roadworthiness, insurance and modification requirements before making changes.</span></div></footer>
 
 <script>
-function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('guideReaderPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function showHome(){
+ hideAllMainPages();document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('guideReaderPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
 function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('guideReaderPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
 
 function modPlan(){
@@ -691,6 +751,63 @@ function checkPostSEO(){
  document.getElementById('contentSeoPanel').innerHTML=`<div class="content-seo-head"><div><div class="eyebrow">Content SEO Checker</div><b>Guide readiness</b></div><div class="seo-score">${score}/100</div></div><div class="seo-checks">${checks.map(x=>`<div class="seo-check ${x[1]?'good':'bad'}"><b>${x[1]?'✓':'✕'} ${x[0]}</b><span>${x[2]}</span></div>`).join('')}</div><div class="notice" style="margin-top:12px">${score>=80?'Strong starting point. Add internal links and improve any remaining failed checks before publishing.':'Improve the failed checks before publishing. Focus on title/meta length, useful content depth, headings and links.'}</div>`;
  return score;
 }
+
+
+// ---------------- DriveWise v17 membership-first journey ----------------
+let memberMode='signup', memberIntent='garage';
+function getMember(){try{return JSON.parse(localStorage.getItem('drivewiseMember')||'null')}catch(e){return null}}
+function setMember(m){localStorage.setItem('drivewiseMember',JSON.stringify(m))}
+function showMemberUser(){
+ const m=getMember(), ui=document.getElementById('memberUser');
+ if(!ui)return;
+ if(m){ui.style.display='flex';document.getElementById('memberUserName').textContent=m.name||m.email.split('@')[0];}
+ else ui.style.display='none';
+}
+function toggleMemberMode(){
+ memberMode=memberMode==='signup'?'login':'signup';
+ document.getElementById('memberGateTitle').textContent=memberMode==='signup'?'Create your free account':'Welcome back';
+ document.getElementById('memberGateText').textContent=memberMode==='signup'?'Read all our news and guides without an account. Sign up when you want to save a car or use the personalised tools.':'Log in to access your garage, car search and parts tools.';
+ document.getElementById('memberName').style.display=memberMode==='signup'?'block':'none';
+ document.getElementById('memberPassword').autocomplete=memberMode==='signup'?'new-password':'current-password';
+ document.getElementById('memberSubmitButton').textContent=memberMode==='signup'?'Create free account':'Log in';
+ document.getElementById('memberSwitchText').textContent=memberMode==='signup'?'Already have an account?':'Need an account?';
+}
+function openMemberArea(intent){
+ memberIntent=intent;
+ if(getMember()){routeMemberIntent(intent);return}
+ memberMode='signup';toggleMemberMode();toggleMemberMode();
+ document.getElementById('memberGate').style.display='flex';
+}
+function closeMemberGate(){document.getElementById('memberGate').style.display='none'}
+function memberSubmit(event){
+ event.preventDefault();
+ const name=document.getElementById('memberName').value.trim(),email=document.getElementById('memberEmail').value.trim().toLowerCase(),password=document.getElementById('memberPassword').value;
+ if(memberMode==='signup'){
+   setMember({name:name||email.split('@')[0],email,password,createdAt:Date.now()});
+ }else{
+   const saved=getMember();
+   if(!saved||saved.email!==email||saved.password!==password){alert('Those login details are not recognised. Please create an account or try again.');return}
+ }
+ closeMemberGate();showMemberUser();routeMemberIntent(memberIntent);
+}
+function memberLogout(){localStorage.removeItem('drivewiseMember');showMemberUser();showHome()}
+function requireMember(intent){if(getMember()){routeMemberIntent(intent);return true}openMemberArea(intent);return false}
+function routeMemberIntent(intent){
+ if(intent==='garage')showGarage();
+ else if(intent==='search')openSection('used');
+ else if(intent==='parts')openSection('mods');
+ else showAccount();
+}
+function showAccount(){
+ if(!getMember()){openMemberArea('account');return}
+ hideAllMainPages();document.getElementById('accountPage').style.display='block';
+ const m=getMember();document.getElementById('accountHeading').textContent=`Welcome back, ${m.name||'Driver'}`;window.scrollTo(0,0);
+ trackPage();
+}
+function hideAllMainPages(){
+ ['home','used','mods','shortlistPage','modLibraryPage','garagePage','guidesPage','guideReaderPage','accountPage','adminLogin','adminShell'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none'});
+}
+showMemberUser();
 
 // ---------------- Dedicated DriveWise Guides page ----------------
 let activeGuideCategory='All';
@@ -847,7 +964,7 @@ function publishDriveWisePost(){
    msg.style.display='block';msg.textContent=`Published: ${title}`;
  }
  saveDriveWisePosts(posts);
- cancelDriveWiseEdit();renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
+ cancelDriveWiseEdit();renderGuidesContent();renderPublicEditorialHome();renderDedicatedGuides();renderPublishedPostsAdmin();
 }
 function clearPostEditor(show=true){
  ['postTitle','postExcerpt','postBody','postSeoTitle','postMetaDescription'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
@@ -898,11 +1015,11 @@ function toggleFeatureDriveWisePost(id){
  const target=posts.find(p=>p.id===id);if(!target)return;
  const makeFeatured=!target.featured;
  posts=posts.map(p=>({...p,featured:makeFeatured?p.id===id:false}));
- saveDriveWisePosts(posts);renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
+ saveDriveWisePosts(posts);renderGuidesContent();renderDedicatedGuides();renderPublicEditorialHome();renderPublishedPostsAdmin();
 }
 function deleteDriveWisePost(id){
  if(!confirm('Delete this article?'))return;
- const posts=getDriveWisePosts().filter(p=>p.id!==id);saveDriveWisePosts(posts);renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
+ const posts=getDriveWisePosts().filter(p=>p.id!==id);saveDriveWisePosts(posts);renderGuidesContent();renderDedicatedGuides();renderPublicEditorialHome();renderPublishedPostsAdmin();
 }
 function subscribeNewsletter(event){
  event.preventDefault();
@@ -1212,6 +1329,7 @@ function currentPage(){
   if(document.getElementById('garagePage').style.display==='block') return 'My Garage';
   if(document.getElementById('guidesPage').style.display==='block') return 'Guides';
   if(document.getElementById('guideReaderPage').style.display==='block') return 'Guide Article';
+  if(document.getElementById('accountPage').style.display==='block') return 'Account';
   if(document.getElementById('adminShell').style.display==='block') return 'Admin Dashboard';
   return 'Homepage';
 }
@@ -1289,5 +1407,21 @@ showHome=function(){_showHome();trackPage()};
 trackPage();
 if(sessionStorage.getItem('dwAdmin')==='1'){document.getElementById('home').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';document.getElementById('postDate').value=new Date().toISOString().slice(0,10);document.getElementById('postBodyEditor').innerHTML='';renderPublishedPostsAdmin();renderAnalytics();runSEOAudit()}
 </script>
+
+<div id="memberGate" class="member-gate">
+  <div class="member-box">
+    <div class="eyebrow" id="memberGateEyebrow">DriveWise account</div>
+    <h2 id="memberGateTitle">Create your free account</h2>
+    <p id="memberGateText">Read all our news and guides without an account. Sign up when you want to save a car or use the personalised tools.</p>
+    <form class="member-form" onsubmit="memberSubmit(event)">
+      <input id="memberName" placeholder="Your name" autocomplete="name">
+      <input id="memberEmail" type="email" placeholder="Email address" autocomplete="email" required>
+      <input id="memberPassword" type="password" placeholder="Password" autocomplete="new-password" required minlength="6">
+      <button class="btn" type="submit" id="memberSubmitButton">Create free account</button>
+    </form>
+    <div class="member-switch"><span id="memberSwitchText">Already have an account?</span> <button type="button" onclick="toggleMemberMode()">Log in</button></div>
+    <button class="parkers-btn" style="margin-top:15px" onclick="closeMemberGate()">Continue reading</button>
+  </div>
+</div>
 </body>
 </html>
