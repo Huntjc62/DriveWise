@@ -53,7 +53,15 @@ const MAKES={
 
 const $=id=>document.getElementById(id);
 const postsKey="dw_posts", memberKey="dw_member", garageKey="dw_garage", subsKey="dw_subs";
-function posts(){let p=JSON.parse(localStorage.getItem(postsKey)||"null");if(!p){p=SEED_POSTS;localStorage.setItem(postsKey,JSON.stringify(p))}return p}
+function posts(){
+ let p=null;
+ try{p=JSON.parse(localStorage.getItem(postsKey)||"null")}catch(e){p=null}
+ if(!Array.isArray(p)||!p.length){
+   p=Array.isArray(SEED_POSTS)?SEED_POSTS.slice():[];
+   try{localStorage.setItem(postsKey,JSON.stringify(p))}catch(e){}
+ }
+ return p;
+}
 function savePosts(p){localStorage.setItem(postsKey,JSON.stringify(p))}
 function dateUK(d){return new Date(d+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}
 function member(){return JSON.parse(localStorage.getItem(memberKey)||"null")}

@@ -23,3 +23,6 @@ Member accounts and content use browser storage for this prototype. Production s
 
 
 Magazine redesign: the News & Guides page is now a magazine-style editorial hub with category sorting for News, Buying Guides, Comparisons, Modifications and DriveWise Monthly, including a lead story, secondary stories, latest stories and category sections.
+
+
+v6 fixes a localStorage compatibility issue that could leave the magazine permanently showing its loading state when an older/invalid `dw_posts` value existed in the browser.
