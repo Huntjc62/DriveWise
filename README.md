@@ -1,25 +1,22 @@
-# DriveWise v12
+# DriveWise v13
 
-Added a content publishing system and made the monthly blog/newsletter a core feature.
+Guides are now a dedicated page rather than a home-page section.
 
-Public Guides page:
-- Featured DriveWise Monthly section
-- Monthly edition CTA
-- Blog/article cards
-- Newsletter signup
-- Published articles open in a readable article view
+Dedicated Guides page:
+- Standalone navigation route/state
+- DriveWise Monthly hero feature
+- Monthly newsletter signup
+- Category filters
+- Buying Guides
+- News
+- Modifications
+- Comparisons
+- Monthly editions
+- Readable article modal
+- The full 'Ultimate Guide to Buying a Pre-Owned Car' is included as the first featured guide
+- Admin-published articles automatically appear on the dedicated Guides page
+- Admin can feature a post as the Monthly DriveWise edition
+- Delete/publish workflow retained
 
-Admin:
-- Publish article
-- Title
-- Category
-- Publish date
-- Excerpt
-- Full article content
-- Feature an article as the Monthly DriveWise edition
-- View published articles
-- Delete articles
-
-Content is stored in localStorage for this prototype. For production, move posts and newsletter subscribers to Firebase/Firestore (or another database) and connect the newsletter signup to an email platform such as Mailchimp, Brevo or a transactional/email marketing service.
-
-The existing My Garage, vehicle selector, parts comparison, Mod Library, pre-owned shortlist, analytics and SEO audit remain.
+Important production note:
+Content and newsletter subscribers are still localStorage in this prototype. For a real public site, connect posts to Firebase/Firestore and the newsletter form to a proper email platform so content/subscribers persist across users and devices.

@@ -169,12 +169,28 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 .admin-content-editor{margin-top:18px}.editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.editor-grid .wide{grid-column:1/-1}.editor-field label{display:block;color:#9da6b0;font-size:11px;margin-bottom:6px}.editor-field input,.editor-field select,.editor-field textarea{width:100%;background:#0b0e11;border:1px solid #303841;color:#fff;padding:11px;border-radius:8px;outline:none}.editor-field textarea{min-height:160px;resize:vertical}.published-posts{display:grid;gap:10px;margin-top:18px}.published-row{background:#0b0e11;border:1px solid #252c33;border-radius:12px;padding:14px;display:flex;justify-content:space-between;gap:15px;align-items:center}.published-row b{display:block}.published-row span{font-size:11px;color:#7f8993}
 @media(max-width:800px){.monthly-feature{grid-template-columns:1fr}.newsletter-signup{display:block}.newsletter-form{margin-top:15px;min-width:0}.blog-posts{grid-template-columns:1fr}.editor-grid{grid-template-columns:1fr}.editor-grid .wide{grid-column:auto}.published-row{display:block}.published-row .btn{margin-top:10px}}
 </style>
+
+<style id="guides-page-styles">
+.guides-page{display:none;padding:55px 0 90px}
+.guides-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:end;margin-bottom:28px}
+.guides-hero h1{font-size:clamp(48px,6vw,78px);line-height:.92;letter-spacing:-.065em;margin:10px 0 15px}
+.guides-hero p{color:#9da6b0;max-width:720px}
+.guides-feature{background:linear-gradient(145deg,#171d23,#0f1408);border:1px solid #39471a;border-radius:24px;padding:28px;margin-bottom:24px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:end}
+.guides-feature h2{font-size:38px;line-height:1;margin:10px 0}.guides-feature p{color:#aeb6bd;max-width:750px}.guides-feature .date{font-size:11px;color:#7f8993;margin-top:12px}
+.guides-badge{display:inline-block;background:#d7ff3f;color:#080a0d;border-radius:99px;padding:6px 10px;font-size:10px;font-weight:900;letter-spacing:.08em}
+.guides-newsletter{margin:24px 0;background:#11151a;border:1px solid #2a323b;border-radius:20px;padding:24px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.guides-newsletter h3{margin:0 0 5px}.guides-newsletter p{margin:0;color:#9da6b0;font-size:13px}.guides-newsletter form{display:flex;gap:8px;min-width:360px}.guides-newsletter input{background:#0b0e11;border:1px solid #303841;color:#fff;padding:11px;border-radius:8px;min-width:0;flex:1}
+.guides-filter{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}.guide-filter{border:1px solid #303841;background:#151a20;color:#cbd1d6;padding:9px 13px;border-radius:99px;cursor:pointer;font-weight:800;font-size:12px}.guide-filter.active{background:#d7ff3f;color:#080a0d;border-color:#d7ff3f}
+.guides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.guide-card{background:#11151a;border:1px solid #2a323b;border-radius:18px;padding:20px}.guide-card h3{font-size:20px;margin:8px 0}.guide-card p{font-size:13px;color:#9da6b0}.guide-card .guide-date{font-size:10px;color:#7f8993;margin-top:14px}.guide-card .tag{display:inline-block}
+.guide-empty{padding:30px;background:#11151a;border:1px solid #2a323b;border-radius:18px;color:#9da6b0}
+@media(max-width:850px){.guides-hero{grid-template-columns:1fr}.guides-feature{grid-template-columns:1fr}.guides-newsletter{display:block}.guides-newsletter form{margin-top:15px;min-width:0}.guides-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <header>
   <div class="container nav">
     <a class="logo" href="#" onclick="showHome();return false;">DRIVE<span>WISE</span></a>
-    <nav class="navlinks"><a href="#" onclick="openSection('used');return false;">Pre-Owned</a><a href="#" onclick="showGarage();return false;">My Garage</a><a href="#" onclick="openSection('mods');return false;">Mods</a><a href="#" onclick="showModLibrary();return false;">Mod Library</a><a href="#guides">Guides</a><a href="#" onclick="showAdminLogin();return false;">Admin</a></nav>
+    <nav class="navlinks"><a href="#" onclick="openSection('used');return false;">Pre-Owned</a><a href="#" onclick="showGarage();return false;">My Garage</a><a href="#" onclick="openSection('mods');return false;">Mods</a><a href="#" onclick="showModLibrary();return false;">Mod Library</a><a href="#" onclick="showGuides();return false;">Guides</a><a href="#" onclick="showAdminLogin();return false;">Admin</a></nav>
   </div>
 </header>
 
@@ -308,6 +324,39 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 
 
 
+
+
+<section id="guidesPage" class="guides-page">
+<div class="container">
+  <div class="back" onclick="showHome()">← Back to home</div>
+  <div class="guides-hero">
+    <div>
+      <div class="eyebrow">DriveWise Guides</div>
+      <h1>Buy smarter.<br><span style="color:var(--accent)">Build better.</span></h1>
+      <p>Independent, practical guides for buying pre-owned cars, understanding modifications and getting more from the car you already own.</p>
+    </div>
+    <div class="garage-selector" style="margin:0"><div class="eyebrow">Monthly feature</div><h3 style="font-size:26px;margin:10px 0 5px">DriveWise Monthly</h3><p style="margin:0;color:#9da6b0;font-size:13px">A monthly round-up of useful car advice, news, buying tips and modification ideas.</p></div>
+  </div>
+
+  <div id="dedicatedMonthlyFeature" class="guides-feature"></div>
+
+  <div class="guides-newsletter">
+    <div><h3>Get the DriveWise Monthly</h3><p>One useful car guide, buying tip, modification idea and market insight delivered once a month.</p></div>
+    <form onsubmit="subscribeNewsletter(event)"><input id="guidesNewsletterEmail" type="email" placeholder="Your email address" required><button class="btn" type="submit">Subscribe →</button></form>
+  </div>
+
+  <div class="guides-filter" id="guidesFilters">
+    <button class="guide-filter active" data-category="All">All</button>
+    <button class="guide-filter" data-category="Buying Guide">Buying Guides</button>
+    <button class="guide-filter" data-category="News">News</button>
+    <button class="guide-filter" data-category="Modification">Modifications</button>
+    <button class="guide-filter" data-category="Comparison">Comparisons</button>
+    <button class="guide-filter" data-category="Monthly Newsletter">Monthly</button>
+  </div>
+
+  <div id="dedicatedGuidesGrid" class="guides-grid"></div>
+</div>
+</section>
 
 <section id="garagePage" class="garage-page">
 <div class="container">
@@ -520,8 +569,8 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <footer><div class="container">© 2026 DriveWise. Built for people who care what they drive. <span style="float:right">Information only — always check UK roadworthiness, insurance and modification requirements before making changes.</span></div></footer>
 
 <script>
-function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
-function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
 
 function modPlan(){
  const goal=document.getElementById('modgoal').value,budget=Number(document.getElementById('modbudget').value)||0,road=document.getElementById('roaduse').value;
@@ -535,11 +584,105 @@ showHome();
 
 
 
+
+// ---------------- Dedicated DriveWise Guides page ----------------
+let activeGuideCategory='All';
+function showGuides(){
+ document.getElementById('home').style.display='none';
+ document.getElementById('used').style.display='none';
+ document.getElementById('mods').style.display='none';
+ document.getElementById('shortlistPage').style.display='none';
+ document.getElementById('modLibraryPage').style.display='none';
+ document.getElementById('garagePage').style.display='none';
+ document.getElementById('adminLogin').style.display='none';
+ document.getElementById('adminShell').style.display='none';
+ document.getElementById('guidesPage').style.display='block';
+ window.scrollTo(0,0);
+ renderDedicatedGuides();
+ trackPage();
+}
+function renderDedicatedGuides(){
+ const posts=getDriveWisePosts().sort((a,b)=>new Date(b.date)-new Date(a.date));
+ const feature=posts.find(p=>p.featured)||posts.find(p=>p.category==='Monthly Newsletter')||posts[0];
+ const featureEl=document.getElementById('dedicatedMonthlyFeature');
+ if(feature){
+  featureEl.innerHTML=`<div><span class="guides-badge">DRIVEWISE MONTHLY</span><h2>${feature.title}</h2><p>${feature.excerpt||''}</p><div class="date">${formatPostDate(feature.date)} · ${feature.category}</div></div><div><button class="btn" onclick="openPublishedPost('${feature.id}')">Read this month's edition →</button></div>`;
+ }
+ const grid=document.getElementById('dedicatedGuidesGrid');
+ const visible=posts.filter(p=>activeGuideCategory==='All'||p.category===activeGuideCategory);
+ grid.innerHTML=visible.map(p=>`<article class="guide-card"><span class="tag">${p.category}</span><h3>${p.title}</h3><p>${p.excerpt||''}</p><div class="guide-date">${formatPostDate(p.date)}</div><button class="parkers-btn" style="margin-top:12px" onclick="openPublishedPost('${p.id}')">Read guide →</button></article>`).join('')||'<div class="guide-empty">No guides in this category yet. Check back soon.</div>';
+}
+document.querySelectorAll('.guide-filter').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.guide-filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+ activeGuideCategory=btn.dataset.category;renderDedicatedGuides();
+}));
+
 // ---------------- DriveWise content publishing + Monthly Newsletter ----------------
+
+function driveWiseBuyingGuideBody(){
+ return `Buying a pre-owned car can be one of the smartest ways to get behind the wheel without taking the biggest depreciation hit. But the cheapest car is not always the best deal.
+
+1. Know your budget — then leave some spare
+Don't spend your entire budget on the purchase price. Keep money aside for insurance, tax, servicing, tyres, MOTs, unexpected repairs and fuel.
+
+2. Decide what you actually need
+A daily driver needs different qualities from a family car, motorway cruiser, weekend car or project. Prioritise reliability, practicality, comfort, performance or modification potential according to how you will actually use it.
+
+3. Don't judge a car by mileage alone
+Mileage matters, but maintenance history matters too. Look at annual mileage, servicing, major repairs, tyres, brakes, cambelt or chain history where applicable, clutch and gearbox condition and overall care.
+
+4. Check the MOT history
+Look for repeated advisories involving tyres, brakes, suspension, corrosion, steering, exhausts and lights. A pattern of the same issue appearing year after year deserves investigation.
+
+5. Check the service history
+Look for evidence of oil and filter changes, brake servicing, spark plugs, transmission servicing and scheduled major work. For modified cars, ask who installed and tuned the modifications and whether there are receipts.
+
+6. Inspect the bodywork in daylight
+Look for paint differences, inconsistent panel gaps, dents, scratches and corrosion around wheel arches, sills, door bottoms, boot areas and underneath the vehicle.
+
+7. Check the tyres
+Inspect tread, uneven wear, cracks, sidewall damage, matching tyres and brand quality. Uneven wear can point towards alignment, suspension or steering issues.
+
+8. Look inside the car
+Compare wear on seats, steering wheel, pedals, gear knob and switches with the claimed mileage. Test air conditioning, windows, infotainment, parking sensors and other equipment.
+
+9. Start the engine from cold
+If possible, see the car before it has been driven. Listen for unusual rattles, knocking, ticking or rough running and check the dashboard for warning lights.
+
+10. Take a proper test drive
+Try low-speed driving, acceleration, braking, steering, gear changes, reversing and different road surfaces. Listen for knocks, clutch issues, gearbox hesitation and steering problems.
+
+11. Check the paperwork
+Make sure the registration, VIN, V5C, service records and MOT history match the vehicle. Investigate anything that does not add up before buying.
+
+12. Be careful with modified cars
+A modified car is not automatically a bad purchase. Ask what has changed, who fitted it, whether there are receipts, whether it was professionally tuned and whether modifications have been declared to the insurer.
+
+13. Don't be afraid to walk away
+You don't have to buy the car. If something does not feel right, walk away. There will always be another car.
+
+DriveWise used-car checklist:
+• Does it fit my budget?
+• Have I checked the MOT history?
+• Have I seen the service history?
+• Does the mileage make sense?
+• Have I inspected the bodywork?
+• Have I checked tyres and brakes?
+• Have I started it from cold?
+• Have I taken a proper test drive?
+• Have I checked the paperwork?
+• Have I considered insurance and running costs?
+• Do I have money left for unexpected repairs?
+• Am I buying because the car is right for me rather than because I feel pressured?
+
+The goal isn't to find the cheapest car. It's to find the right car at the right price — and know what you're getting into before you buy.`;
+}
+
 const seedPosts=[
  {id:'seed-monthly',title:'The DriveWise Monthly: Used cars, mods and what to watch',category:'Monthly Newsletter',date:'2026-08-01',excerpt:'Your monthly round-up of used-car advice, modification ideas and things worth checking before you buy.',body:'Welcome to the first DriveWise Monthly. Each month we will bring together practical used-car advice, modification inspiration, comparisons and things worth checking before you spend your money.',featured:true},
  {id:'seed-inspect',title:'How to inspect a used car before you buy',category:'Buying Guide',date:'2026-07-20',excerpt:'Paint, tyres, brakes, warning lights, cold starts, leaks, history and the test drive.',body:'A proper used-car inspection starts before the test drive. Check the paperwork, walk around the bodywork, inspect the tyres and brakes, look for warning lights and insist on seeing the car start from cold where possible.',featured:false},
- {id:'seed-mods',title:'How to choose your first modification',category:'Modification',date:'2026-07-12',excerpt:'Start with the goal rather than the parts catalogue. A good modification should solve a problem or improve something you actually notice.',body:'Before buying a part, decide what you want to change: handling, appearance, sound, comfort or performance. Then choose supporting parts and check fitment for your exact vehicle.',featured:false}
+ {id:'seed-mods',title:'How to choose your first modification',category:'Modification',date:'2026-07-12',excerpt:'Start with the goal rather than the parts catalogue. A good modification should solve a problem or improve something you actually notice.',body:'Before buying a part, decide what you want to change: handling, appearance, sound, comfort or performance. Then choose supporting parts and check fitment for your exact vehicle.',featured:false},
+ {id:'seed-buying-guide',title:'The Ultimate Guide to Buying a Pre-Owned Car',category:'Buying Guide',date:'2026-08-17',excerpt:'Everything you should check before buying a used car, from budget and MOT history to servicing, bodywork, test drives and modified cars.',body:driveWiseBuyingGuideBody(),featured:true}
 ];
 function getDriveWisePosts(){
  try{
@@ -576,7 +719,7 @@ function publishDriveWisePost(){
  const post={id:'post-'+Date.now(),title,category,date,excerpt,body,featured};
  posts.unshift(post);saveDriveWisePosts(posts);
  msg.style.display='block';msg.textContent=`Published: ${title}`;
- clearPostEditor(false);renderGuidesContent();renderPublishedPostsAdmin();
+ clearPostEditor(false);renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
 }
 function clearPostEditor(show=true){
  ['postTitle','postExcerpt','postBody'].forEach(id=>document.getElementById(id).value='');
@@ -591,7 +734,7 @@ function renderPublishedPostsAdmin(){
 }
 function deleteDriveWisePost(id){
  if(!confirm('Delete this article?'))return;
- const posts=getDriveWisePosts().filter(p=>p.id!==id);saveDriveWisePosts(posts);renderGuidesContent();renderPublishedPostsAdmin();
+ const posts=getDriveWisePosts().filter(p=>p.id!==id);saveDriveWisePosts(posts);renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
 }
 function subscribeNewsletter(event){
  event.preventDefault();
@@ -668,7 +811,7 @@ function renderGarageProfile(c){
  el.innerHTML=`<div class="eyebrow">Saved car</div><h2>${title}</h2><p>${c.year} ${c.engine?'· '+c.engine:''} ${c.fuel?'· '+c.fuel:''} ${c.gear?'· '+c.gear:''}</p><div class="garage-profile-grid"><div class="garage-mini"><small>Make</small><b>${c.make}</b></div><div class="garage-mini"><small>Model</small><b>${c.model}</b></div><div class="garage-mini"><small>Trim</small><b>${c.trim||'Not added'}</b></div><div class="garage-mini"><small>Registration</small><b>${c.reg||'Not added'}</b></div></div>`;
 }
 function showGarage(){
- document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('garagePage').style.display='block';
+ document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('garagePage').style.display='block';
  window.scrollTo(0,0);populateMyGarageMakes();loadMyGarage();trackPage();
 }
 function clearMyGarage(){
@@ -899,6 +1042,7 @@ function currentPage(){
   if(document.getElementById('shortlistPage').style.display==='block') return 'Car Shortlist';
   if(document.getElementById('modLibraryPage').style.display==='block') return 'Mod Library';
   if(document.getElementById('garagePage').style.display==='block') return 'My Garage';
+  if(document.getElementById('guidesPage').style.display==='block') return 'Guides';
   if(document.getElementById('adminShell').style.display==='block') return 'Admin Dashboard';
   return 'Homepage';
 }
