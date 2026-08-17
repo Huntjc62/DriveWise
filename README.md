@@ -1,12 +1,15 @@
-# DriveWise v4
+# DriveWise v5
 
-SEO improvements based on the admin audit screenshot:
-- Expanded meta description to a search-friendly length
-- Added a branded car image with descriptive alt text
-- Reduced the public document to one primary homepage H1
-- Added contextual internal links between buying guides, pre-owned cars and mods
-- Improved the custom SEO audit so it does not count hidden admin/SPA headings as public H1s
-- Increased the internal-link threshold and checks actual navigation/contextual links
-- Retained the five-car shortlist, Parkers reference links, Auto Trader hand-off and admin analytics
+Mods section upgrade:
+- My Garage vehicle selector (make, model, year)
+- Part-category selector
+- Comparison across three UK retailers:
+  - Demon Tweeks
+  - Euro Car Parts
+  - Halfords
+- Vehicle-specific comparison context
+- Retailer-specific strengths
+- Direct links to each retailer's own catalogue/category
+- Fitment warning and no false live-price claims
 
-The audit is now designed to tell you about genuine issues rather than flagging the hidden admin dashboard as part of the public page.
+The comparison is deliberately a retailer hand-off rather than scraping or copying third-party listings. For production, the next step would be adding an authorised product/affiliate feed or API so DriveWise can show verified live products, prices, stock and fitment data side-by-side.

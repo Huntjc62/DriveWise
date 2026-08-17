@@ -69,6 +69,29 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 .shortlist-page{display:none;padding:55px 0 85px}.shortlist-head{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:26px}.shortlist-head h1{font-size:54px;margin:0;letter-spacing:-.06em}.shortlist-head p{color:#9da6b0;max-width:560px}.shortlist-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.car-card{background:#11151a;border:1px solid #2a323b;border-radius:22px;padding:25px;position:relative}.car-card:hover{border-color:#59692a;box-shadow:0 18px 45px rgba(0,0,0,.25)}.match{position:absolute;right:18px;top:18px;background:#182008;border:1px solid #3b4b18;color:#d7ff3f;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:900}.car-card h2{margin:0 80px 4px 0;font-size:26px}.car-card .variant{color:#9da6b0;font-size:13px;margin-bottom:18px}.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:17px 0}.spec{background:#0b0e11;border:1px solid #242b32;border-radius:11px;padding:10px}.spec small{display:block;color:#7f8993;font-size:10px;text-transform:uppercase}.spec b{font-size:14px}.why{color:#c6ccd2;font-size:13px;margin:15px 0}.car-actions{display:flex;gap:9px;flex-wrap:wrap}.source{font-size:11px;color:#7f8993;margin-top:14px}.source a{color:#aebe69;text-decoration:underline}.at-btn{background:#d7ff3f;color:#080a0d;border:0;padding:11px 15px;border-radius:9px;font-weight:900;cursor:pointer}.parkers-btn{background:#252c33;color:#fff;border:1px solid #303841;padding:11px 15px;border-radius:9px;font-weight:800;cursor:pointer}.search-panel{background:linear-gradient(135deg,#171d23,#0d1013);border:1px solid #2a323b;border-radius:22px;padding:24px;margin:0 0 22px}.search-panel h3{margin:0 0 7px}.search-panel p{margin:0 0 15px;color:#9da6b0}.short-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}.short-form input{width:100%;background:#0b0e11;border:1px solid #303841;color:#fff;padding:12px;border-radius:9px}.short-form label{display:block;color:#9da6b0;font-size:11px;margin-bottom:5px}
 @media(max-width:800px){.shortlist-grid{grid-template-columns:1fr}.shortlist-head{display:block}.short-form{grid-template-columns:1fr}.spec-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
+
+<style id="garage-compare-styles">
+.garage-selector{background:linear-gradient(135deg,#171d23,#0d1013);border:1px solid #2a323b;border-radius:24px;padding:28px;margin-bottom:24px}
+.garage-form{display:grid;grid-template-columns:1.1fr 1.1fr .8fr 1fr auto;gap:12px;align-items:end}
+.garage-field label{display:block;font-size:11px;color:#9da6b0;margin-bottom:6px}
+.garage-field select,.garage-field input{width:100%;background:#0b0e11;border:1px solid #303841;color:#fff;padding:12px;border-radius:9px;outline:none}
+.garage-field select:focus,.garage-field input:focus{border-color:#d7ff3f}
+.garage-result{display:none;margin-top:24px}
+.car-profile{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 22px;background:#0b0e11;border:1px solid #272e36;border-radius:18px;margin-bottom:18px}
+.car-profile h3{margin:0 0 3px;font-size:25px}.car-profile p{margin:0;color:#9da6b0;font-size:13px}
+.parts-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:17px}
+.part-tab{border:1px solid #303841;background:#151a20;color:#cbd1d6;padding:9px 13px;border-radius:99px;cursor:pointer;font-weight:800;font-size:12px}
+.part-tab.active{background:#d7ff3f;color:#080a0d;border-color:#d7ff3f}
+.compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.retailer-card{background:#11151a;border:1px solid #2a323b;border-radius:18px;padding:20px}
+.retailer-card h3{margin:0 0 5px}.retailer-card .retailer-type{font-size:11px;color:#d7ff3f;text-transform:uppercase;font-weight:900;letter-spacing:.08em}
+.retailer-card p{font-size:13px;color:#9da6b0;min-height:58px}
+.retailer-card .feature-list{display:grid;gap:7px;margin:14px 0}.retailer-card .feature-list div{font-size:12px;padding:8px 10px;background:#0b0e11;border-radius:8px}
+.retailer-card a{display:inline-flex;background:#d7ff3f;color:#080a0d;padding:10px 13px;border-radius:8px;font-weight:900;font-size:12px}
+.compare-note{font-size:12px;color:#7f8993;margin-top:15px}
+@media(max-width:1000px){.garage-form{grid-template-columns:repeat(2,1fr)}.compare-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.garage-form{grid-template-columns:1fr}.car-profile{display:block}.car-profile .tag{margin-top:12px}}
+</style>
 </head>
 <body>
 <header>
@@ -141,6 +164,20 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <div class="container">
 <div class="back" onclick="showHome()">← Back to home</div>
 <div class="section-head"><div><div class="eyebrow">Modifications</div><h2>Build it with a plan.</h2></div><p>Not every modification makes a car better. Choose upgrades around a goal — handling, appearance, sound, comfort or performance.</p></div>
+<div class="garage-selector">
+  <div class="eyebrow">My Garage</div>
+  <h2 style="font-size:34px;margin:12px 0 7px">Select the car you actually drive.</h2>
+  <p style="color:#9da6b0;margin:0 0 20px">Choose your car, then compare modification and replacement-part options across three UK retailers. The comparison is designed to help you research the right part before you buy.</p>
+  <div class="garage-form">
+    <div class="garage-field"><label for="garageMake">Make</label><select id="garageMake"><option value="">Choose make</option><option>Ford</option><option>Volkswagen</option><option>BMW</option><option>Audi</option><option>Honda</option><option>Mazda</option><option>Toyota</option><option>Vauxhall</option><option>Mercedes-Benz</option><option>Skoda</option></select></div>
+    <div class="garage-field"><label for="garageModel">Model</label><select id="garageModel" disabled><option>Choose model</option></select></div>
+    <div class="garage-field"><label for="garageYear">Year</label><select id="garageYear" disabled><option>Choose year</option></select></div>
+    <div class="garage-field"><label for="garagePart">What are you looking for?</label><select id="garagePart"><option value="suspension">Suspension</option><option value="brakes">Brakes</option><option value="exhaust">Exhaust</option><option value="wheels">Wheels & tyres</option><option value="intake">Intake / air filter</option><option value="styling">Styling</option><option value="maintenance">Maintenance parts</option></select></div>
+    <button class="btn" id="comparePartsBtn">Compare parts</button>
+  </div>
+  <div id="garageResult" class="garage-result" aria-live="polite"></div>
+</div>
+
 <div class="feature">
 <div><h2>Choose your project direction.</h2><p>A good build starts with the car itself. Before buying parts, understand the platform, weak points, budget and intended use.</p><div class="checks"><div class="check"><b>01 — Baseline</b> Service the car and fix existing faults first.</div><div class="check"><b>02 — Goal</b> Decide what you want the car to feel like.</div><div class="check"><b>03 — Supporting mods</b> Upgrade brakes, tyres and suspension where power increases demand it.</div></div></div>
 <div class="tool">
@@ -347,6 +384,65 @@ function searchSelectedAutoTrader(){
  if(!selectedShortCar){alert('Choose a car from your shortlist first.');return}
  searchAutoTrader(selectedShortCar.make,selectedShortCar.model);
 }
+
+
+// ---------------- DriveWise My Garage + 3-retailer comparison ----------------
+const garageModels={
+ 'Ford':{'Fiesta':[2018,2019,2020,2021,2022,2023,2024],'Focus':[2018,2019,2020,2021,2022,2023,2024],'Mustang':[2018,2019,2020,2021,2022,2023,2024]},
+ 'Volkswagen':{'Golf':[2018,2019,2020,2021,2022,2023,2024],'Polo':[2018,2019,2020,2021,2022,2023,2024],'GTI':[2018,2019,2020,2021,2022,2023,2024]},
+ 'BMW':{'3 Series':[2018,2019,2020,2021,2022,2023,2024],'1 Series':[2018,2019,2020,2021,2022,2023,2024],'M3':[2018,2019,2020,2021,2022,2023,2024]},
+ 'Audi':{'A3':[2018,2019,2020,2021,2022,2023,2024],'A4':[2018,2019,2020,2021,2022,2023,2024],'TT':[2018,2019,2020,2021,2022,2023,2024]},
+ 'Honda':{'Civic':[2018,2019,2020,2021,2022,2023,2024],'Jazz':[2018,2019,2020,2021,2022,2023,2024],'Type R':[2018,2019,2020,2021,2022,2023,2024]},
+ 'Mazda':{'MX-5':[2018,2019,2020,2021,2022,2023,2024],'Mazda 3':[2018,2019,2020,2021,2022,2023,2024],'CX-5':[2018,2019,2020,2021,2022,2023,2024]},
+ 'Toyota':{'GT86':[2018,2019,2020,2021,2022],'GR Yaris':[2021,2022,2023,2024],'Corolla':[2019,2020,2021,2022,2023,2024]},
+ 'Vauxhall':{'Corsa':[2018,2019,2020,2021,2022,2023,2024],'Astra':[2018,2019,2020,2021,2022,2023,2024]},
+ 'Mercedes-Benz':{'A-Class':[2018,2019,2020,2021,2022,2023,2024],'C-Class':[2018,2019,2020,2021,2022,2023,2024]},
+ 'Skoda':{'Octavia':[2018,2019,2020,2021,2022,2023,2024],'Fabia':[2018,2019,2020,2021,2022,2023,2024]}
+};
+const partInfo={
+ suspension:{label:'Suspension',hint:'Lowering springs, shocks, coilovers, bushes and handling upgrades.',dt:'https://www.demon-tweeks.com/uk/performance/suspension/',ecp:'https://www.eurocarparts.com/car-parts/suspension-and-steering',half:'https://www.halfords.com/motoring/car-parts/suspension-and-steering/'},
+ brakes:{label:'Brakes',hint:'Pads, discs, fluid, braided lines and performance brake upgrades.',dt:'https://www.demon-tweeks.com/uk/performance/brakes/',ecp:'https://www.eurocarparts.com/car-parts/brakes',half:'https://www.halfords.com/motoring/car-parts/brakes/'},
+ exhaust:{label:'Exhaust',hint:'Cat-back systems, back boxes, catalysts and performance exhaust components.',dt:'https://www.demon-tweeks.com/uk/performance/exhausts/',ecp:'https://www.eurocarparts.com/car-parts/exhausts',half:'https://www.halfords.com/motoring/car-parts/exhaust/'},
+ wheels:{label:'Wheels & tyres',hint:'Wheel and tyre upgrades. Confirm load rating, size, offset and clearance for your exact car.',dt:'https://www.demon-tweeks.com/uk/performance/wheels/',ecp:'https://www.eurocarparts.com/tyres',half:'https://www.halfords.com/tyres/'},
+ intake:{label:'Intake / air filter',hint:'Replacement filters and induction/performance intake options.',dt:'https://www.demon-tweeks.com/uk/performance/air-filters/',ecp:'https://www.eurocarparts.com/car-parts/air-filters',half:'https://www.halfords.com/motoring/car-parts/filters/'},
+ styling:{label:'Styling',hint:'Exterior and appearance upgrades. Check fitment and road-use legality before ordering.',dt:'https://www.demon-tweeks.com/uk/performance/',ecp:'https://www.eurocarparts.com/performance-car-parts',half:'https://www.halfords.com/motoring/car-accessories/'},
+ maintenance:{label:'Maintenance parts',hint:'Filters, service components and replacement parts to establish a healthy baseline.',dt:'https://www.demon-tweeks.com/uk/performance/',ecp:'https://www.eurocarparts.com/',half:'https://www.halfords.com/motoring/car-parts/'}
+};
+function fillGarageModels(){
+ const make=document.getElementById('garageMake'), model=document.getElementById('garageModel'), year=document.getElementById('garageYear');
+ model.innerHTML='<option value="">Choose model</option>';year.innerHTML='<option value="">Choose year</option>';year.disabled=true;
+ const data=garageModels[make.value];model.disabled=!data;
+ if(data)Object.keys(data).forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;model.appendChild(o)});
+}
+function fillGarageYears(){
+ const make=document.getElementById('garageMake').value,model=document.getElementById('garageModel').value,year=document.getElementById('garageYear');
+ year.innerHTML='<option value="">Choose year</option>';const years=garageModels[make]?.[model];year.disabled=!years;
+ if(years)years.forEach(y=>{const o=document.createElement('option');o.value=y;o.textContent=y;year.appendChild(o)});
+}
+function retailerSearchUrl(base,make,model,part){
+ // The retailers' own sites provide vehicle/reg or category selection; we hand the user to the relevant category rather than pretending to have live prices.
+ return base;
+}
+function compareGarageParts(){
+ const make=document.getElementById('garageMake').value,model=document.getElementById('garageModel').value,year=document.getElementById('garageYear').value,part=document.getElementById('garagePart').value;
+ const out=document.getElementById('garageResult');
+ if(!make||!model||!year){out.style.display='block';out.innerHTML='<div class="audit-item"><span class="status-warn">!</span><div><b>Choose your make, model and year first.</b><div class="audit-meta">We use these details to make the comparison relevant to your car. For exact fitment, always verify the registration or VIN with the retailer.</div></div></div>';return}
+ const p=partInfo[part];
+ const retailers=[
+   {name:'Demon Tweeks',type:'Performance specialist',desc:'Strong choice for enthusiast and performance upgrades, including suspension, brakes, wheels, exhausts and tuning components.',url:p.dt,features:['Performance-focused range','Strong enthusiast brands','Useful for project builds']},
+   {name:'Euro Car Parts',type:'Parts & performance',desc:'Broad UK parts catalogue covering maintenance, braking, suspension and performance/styling categories.',url:p.ecp,features:['Large parts catalogue','Vehicle/reg lookup available','Performance & styling section']},
+   {name:'Halfords',type:'Mainstream parts & fitting',desc:'Useful for everyday replacement parts and accessories, with vehicle-specific part finding and a nationwide fitting network.',url:p.half,features:['Vehicle part finder','Nationwide fitting network','Everyday parts & accessories']}
+ ];
+ out.style.display='block';
+ out.innerHTML=`<div class="car-profile"><div><div class="eyebrow">Selected vehicle</div><h3>${make} ${model}</h3><p>${year} · Comparing: ${p.label}</p></div><span class="tag">FITMENT CHECK REQUIRED</span></div>
+ <div class="parts-tabs">${Object.entries(partInfo).map(([key,val])=>`<button class="part-tab ${key===part?'active':''}" data-part="${key}">${val.label}</button>`).join('')}</div>
+ <div class="compare-grid">${retailers.map(r=>`<div class="retailer-card"><div class="retailer-type">${r.type}</div><h3>${r.name}</h3><p>${r.desc}</p><div class="feature-list">${r.features.map(x=>`<div>✓ ${x}</div>`).join('')}</div><a href="${r.url}" target="_blank" rel="noopener">Search ${r.name} →</a></div>`).join('')}</div>
+ <div class="compare-note"><b>${p.label}:</b> ${p.hint} DriveWise does not claim these are identical products or live prices. This comparison sends you to each retailer's own catalogue so you can check exact fitment, brand, specification, availability, delivery and price.</div>`;
+ out.querySelectorAll('.part-tab').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById('garagePart').value=btn.dataset.part;compareGarageParts()}));
+}
+document.getElementById('garageMake')?.addEventListener('change',fillGarageModels);
+document.getElementById('garageModel')?.addEventListener('change',fillGarageYears);
+document.getElementById('comparePartsBtn')?.addEventListener('click',compareGarageParts);
 
 // ---------------- DriveWise analytics + admin ----------------
 const DW_KEY='drivewiseAnalyticsV1';
