@@ -206,6 +206,11 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 .reader-content{font-size:17px;line-height:1.85;color:#d8dde1}.reader-content h2{font-size:31px;line-height:1.15;margin:42px 0 12px;color:#fff}.reader-content h3{font-size:23px;margin:30px 0 10px;color:#fff}.reader-content p{margin:0 0 20px}.reader-content ul,.reader-content ol{margin:0 0 22px;padding-left:25px}.reader-content li{margin-bottom:8px}.reader-content a{color:#d7ff3f}.reader-content blockquote{border-left:3px solid #d7ff3f;padding:5px 20px;color:#aeb6bd;margin:25px 0}.reader-related{margin-top:55px;padding-top:25px;border-top:1px solid #2a323b}.reader-related h2{font-size:24px}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.related-card{background:#11151a;border:1px solid #2a323b;border-radius:14px;padding:15px}.related-card h3{font-size:16px;margin:7px 0}.related-card p{font-size:12px;color:#9da6b0}
 @media(max-width:700px){.seo-checks,.related-grid{grid-template-columns:1fr}.content-seo-head{display:block}.seo-score{margin-top:8px}}
 </style>
+
+<style id="admin-edit-v16">
+.published-row .parkers-btn{font-size:11px;padding:7px 10px}
+.editing-note{background:#11170a;border:1px solid #39471a;border-radius:10px;padding:10px;margin-top:12px;color:#b7c08f;font-size:12px}
+</style>
 </head>
 <body>
 <header>
@@ -829,24 +834,71 @@ function publishDriveWisePost(){
  const msg=document.getElementById('publishMessage');
  if(!title||!date||!body){msg.style.display='block';msg.textContent='Please add a title, publish date and article content.';return}
  let posts=getDriveWisePosts();
- if(featured)posts=posts.map(p=>({...p,featured:false}));
- const post={id:'post-'+Date.now(),title,category,date,excerpt,body,featured,seoTitle,metaDescription};
- posts.unshift(post);saveDriveWisePosts(posts);
- msg.style.display='block';msg.textContent=`Published: ${title}`;
- clearPostEditor(false);renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
+ const publishBtn=document.querySelector('.admin-content-editor .btn[onclick="publishDriveWisePost()"]');
+ const editingId=publishBtn?.dataset.editingId;
+ if(editingId){
+   if(featured)posts=posts.map(p=>({...p,featured:false}));
+   posts=posts.map(p=>p.id===editingId?{...p,title,category,date,excerpt,body,featured,seoTitle,metaDescription}:p);
+   msg.style.display='block';msg.textContent=`Saved changes: ${title}`;
+ }else{
+   if(featured)posts=posts.map(p=>({...p,featured:false}));
+   const post={id:'post-'+Date.now(),title,category,date,excerpt,body,featured,seoTitle,metaDescription};
+   posts.unshift(post);
+   msg.style.display='block';msg.textContent=`Published: ${title}`;
+ }
+ saveDriveWisePosts(posts);
+ cancelDriveWiseEdit();renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
 }
 function clearPostEditor(show=true){
  ['postTitle','postExcerpt','postBody','postSeoTitle','postMetaDescription'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
  const editor=document.getElementById('postBodyEditor');if(editor)editor.innerHTML='';
  const panel=document.getElementById('contentSeoPanel');if(panel)panel.style.display='none';
- document.getElementById('postDate').value=new Date().toISOString().slice(0,10);
- document.getElementById('postFeatured').value='no';
- if(show){const m=document.getElementById('publishMessage');m.style.display='none'}
+ const date=document.getElementById('postDate');if(date)date.value=new Date().toISOString().slice(0,10);
+ const featured=document.getElementById('postFeatured');if(featured)featured.value='no';
+ const btn=document.querySelector('.admin-content-editor .btn[data-editing-id]');
+ if(btn){btn.textContent='Publish article';delete btn.dataset.editingId;}
+ const cancel=document.querySelector('.admin-content-editor .btn[onclick="clearPostEditor()"]');
+ if(cancel)cancel.textContent='Clear';
+ if(show){const m=document.getElementById('publishMessage');if(m)m.style.display='none'}
 }
 function renderPublishedPostsAdmin(){
  const el=document.getElementById('publishedPostsAdmin');if(!el)return;
  const posts=getDriveWisePosts();
- el.innerHTML='<div class="audit-meta">Published content</div>'+posts.map(p=>`<div class="published-row"><div><b>${p.title}</b><span>${p.category} · ${formatPostDate(p.date)}${p.featured?' · Featured':''}</span></div><button class="parkers-btn" onclick="deleteDriveWisePost('${p.id}')">Delete</button></div>`).join('');
+ el.innerHTML='<div class="audit-meta">Published content — click Edit to change any blog, news article, buying guide, comparison or monthly edition.</div>'+posts.map(p=>`<div class="published-row"><div><b>${p.title}</b><span>${p.category} · ${formatPostDate(p.date)}${p.featured?' · Featured':''}</span></div><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="parkers-btn" onclick="editDriveWisePost('${p.id}')">Edit</button><button class="parkers-btn" onclick="toggleFeatureDriveWisePost('${p.id}')">${p.featured?'Unfeature':'Make Monthly'}</button><button class="parkers-btn" onclick="deleteDriveWisePost('${p.id}')">Delete</button></div></div>`).join('');
+}
+
+function editDriveWisePost(id){
+ const post=getDriveWisePosts().find(p=>p.id===id);if(!post)return;
+ document.getElementById('postTitle').value=post.title||'';
+ document.getElementById('postCategory').value=post.category||'Buying Guide';
+ document.getElementById('postDate').value=post.date||'';
+ document.getElementById('postFeatured').value=post.featured?'yes':'no';
+ document.getElementById('postExcerpt').value=post.excerpt||'';
+ document.getElementById('postSeoTitle').value=post.seoTitle||post.title||'';
+ document.getElementById('postMetaDescription').value=post.metaDescription||'';
+ const editor=document.getElementById('postBodyEditor');
+ if(editor)editor.innerHTML=post.body||'';
+ document.getElementById('postBody').value=post.body||'';
+ document.getElementById('contentSeoPanel').style.display='none';
+ const btn=document.querySelector('.admin-content-editor .btn[onclick="publishDriveWisePost()"]');
+ if(btn){btn.textContent='Save changes';btn.dataset.editingId=id;}
+ const cancel=document.querySelector('.admin-content-editor .btn[onclick="clearPostEditor()"]');
+ if(cancel)cancel.textContent='Cancel edit';
+ document.querySelector('.admin-content-editor').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function cancelDriveWiseEdit(){
+ clearPostEditor();
+ const btn=document.querySelector('.admin-content-editor .btn[data-editing-id]');
+ if(btn){btn.textContent='Publish article';delete btn.dataset.editingId;}
+ const cancel=document.querySelector('.admin-content-editor .btn[onclick="clearPostEditor()"]');
+ if(cancel)cancel.textContent='Clear';
+}
+function toggleFeatureDriveWisePost(id){
+ let posts=getDriveWisePosts();
+ const target=posts.find(p=>p.id===id);if(!target)return;
+ const makeFeatured=!target.featured;
+ posts=posts.map(p=>({...p,featured:makeFeatured?p.id===id:false}));
+ saveDriveWisePosts(posts);renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
 }
 function deleteDriveWisePost(id){
  if(!confirm('Delete this article?'))return;
