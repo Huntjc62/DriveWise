@@ -165,7 +165,7 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <div class="back" onclick="showHome()">← Back to home</div>
 <div class="section-head"><div><div class="eyebrow">Modifications</div><h2>Build it with a plan.</h2></div><p>Not every modification makes a car better. Choose upgrades around a goal — handling, appearance, sound, comfort or performance.</p></div>
 <div class="garage-selector">
-  <div class="eyebrow">My Garage</div>
+  <div class="eyebrow">My Garage · UK Vehicle Catalogue</div>
   <h2 style="font-size:34px;margin:12px 0 7px">Select the car you actually drive.</h2>
   <p style="color:#9da6b0;margin:0 0 20px">Choose your car, then compare modification and replacement-part options across three UK retailers. The comparison is designed to help you research the right part before you buy.</p>
   <div class="garage-form">
@@ -176,10 +176,10 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
     <button class="btn" id="comparePartsBtn">Compare parts</button>
   </div>
   <div class="notice">
-<strong>Vehicle catalogue:</strong> DriveWise uses UK-market make/model naming aligned to Auto Trader's make/model structure, with Parkers used as a specification reference. 
+<strong>Vehicle names:</strong> DriveWise uses UK-market naming aligned to Auto Trader's make/model catalogue, with Parkers used for specification checking. 
 <a href="https://www.autotrader.co.uk/cars/brands" target="_blank" rel="noopener">Check Auto Trader's brand directory →</a>
 &nbsp; <a href="https://www.parkers.co.uk/cars/" target="_blank" rel="noopener">Check Parkers →</a>
-<br>For an exact match, production should verify the vehicle by registration/VIN because the same model name can span multiple generations, engines and trims.
+<br><strong>Important:</strong> some real model names contain numbers. DriveWise now displays the full name (for example <b>BMW 3 Series</b>, <b>Alfa Romeo 147</b> and <b>Renault 5</b>) rather than showing a bare number. Exact derivatives should still be verified by registration/VIN.
 </div><div id="garageResult" class="garage-result" aria-live="polite"></div>
 </div>
 
@@ -411,13 +411,15 @@ const partInfo={
 };
 
 function displayModelName(make, model){
-  const numericOnly=/^\d+$/;
+  // Some genuine UK model names are numeric (e.g. Alfa Romeo 147, Renault 5).
+  // In the UI always show the complete make + model so users never see a bare number.
+  const numericOnly=/^\d+(?:\.\d+)?$/;
   if(numericOnly.test(model)) return `${make} ${model}`;
   return model;
 }
 function populateSelect(select, values, placeholder){
   select.innerHTML=`<option value="">${placeholder}</option>`;
-  values.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;select.appendChild(o)});
+  values.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=(select.id==='garageModel'?displayModelName(document.getElementById('garageMake').value,v):v);select.appendChild(o)});
 }
 function fillGarageModels(){
  const make=document.getElementById('garageMake'), model=document.getElementById('garageModel'), year=document.getElementById('garageYear');

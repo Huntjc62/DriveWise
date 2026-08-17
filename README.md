@@ -1,14 +1,16 @@
-# DriveWise v7
+# DriveWise v8
 
-Vehicle catalogue update:
-- Reworked model labels so numeric-only entries are shown with their make (for example, Mazda 3 rather than 3)
-- Broader UK-market make/model catalogue
-- Catalogue naming aligned to the make/model structure used by Auto Trader UK
-- Parkers included as the specification reference source
-- Source links are visible in My Garage
-- Added a direct Auto Trader used-car link for the selected make/model
-- Retains dynamic year selection from 1980 to the current year
-- Retains the three-retailer parts comparison
+Fixed the model selector display issue.
 
-Important production note:
-Auto Trader provides a make/model selector and an A-Z brand directory, while Parkers provides make/model and registration-based specification lookup. The local catalogue is therefore a UI seed, not a claim that every derivative, trim or production year is represented. For a truly exhaustive and exact system, connect DriveWise to an authorised vehicle-fitment/API/data feed and use registration/VIN lookup before declaring a part compatible.
+- Numeric-only model names are now displayed with the full make, e.g.:
+  - BMW 3 Series (already represented as a full model name)
+  - Alfa Romeo 147
+  - Renault 5
+  - Peugeot 107
+  - Fiat 500
+- The model dropdown now explicitly uses the display-name helper.
+- Vehicle naming remains aligned to the UK Auto Trader make/model structure, with Parkers used as the specification reference.
+- Source links are shown in My Garage.
+- Existing years, parts comparison, Auto Trader hand-off, admin analytics and SEO tools remain.
+
+For a production-grade exhaustive catalogue, the next step is an authorised vehicle data/fitment API that returns exact derivatives, engines, trims and registration/VIN matches. Static website pages cannot reliably provide that level of fitment accuracy.
