@@ -20,3 +20,6 @@ The assets folder is retained as the source copies, but the HTML pages do not de
 Demo admin: admin / admin123
 
 Member accounts and content use browser storage for this prototype. Production should use Firebase Authentication + Firestore.
+
+
+Magazine redesign: the News & Guides page is now a magazine-style editorial hub with category sorting for News, Buying Guides, Comparisons, Modifications and DriveWise Monthly, including a lead story, secondary stories, latest stories and category sections.

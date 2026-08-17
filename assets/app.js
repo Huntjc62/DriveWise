@@ -31,6 +31,34 @@ function saveGarage(){let g={make:$("make").value,model:$("model").value,year:$(
 function renderGarage(g){$("garageTitle").textContent=`${g.make} ${g.model}${g.trim?" "+g.trim:""}`;$("garageSub").textContent=`${g.year}${g.engine?" · "+g.engine:""}${g.fuel?" · "+g.fuel:""}`;let title=(g.model+" "+(g.trim||"")).toLowerCase();let shape=/q|x1|x2|x3|x4|x5|x6|x7|kuga|puma|tucson|sportage|sorento|rav4|cr-v|xc40|xc60|xc90|tiguan|defender|evoque|macan|cayenne/.test(title)?"SUV":/ranger|hilux|amarok|transit/.test(title)?"Pickup":/911|tt|z4|mustang|supra|cayman|boxster|mx-5/.test(title)?"Coupe":"Hatchback";$("shapeLabel").textContent=shape}
 function setupCars(){if(!protect())return;let g=JSON.parse(localStorage.getItem(garageKey)||"null");if(g&&$("savedCar"))$("savedCar").textContent=`Your garage: ${g.make} ${g.model} ${g.trim||""}`}
 function setupParts(){if(!protect())return;let g=JSON.parse(localStorage.getItem(garageKey)||"null");if(g&&$("partsCar"))$("partsCar").textContent=`Parts for ${g.make} ${g.model} ${g.trim||""}`}
+
+function setupMagazine(){
+ const buttons=document.querySelectorAll("#magFilters button");
+ buttons.forEach(b=>b.addEventListener("click",()=>{buttons.forEach(x=>x.classList.remove("active"));b.classList.add("active");renderMagazine(b.dataset.filter);}));
+ renderMagazine("All");
+}
+function magazineStory(p,lead=false){
+ return `<article class="${lead?"mag-lead-main":"mag-story"}"><span class="tag">${p.category}</span><h2>${p.title}</h2><p>${p.excerpt||""}</p><div class="mag-meta">${dateUK(p.date)} · DriveWise</div><div class="actions"><a class="btn ${lead?"":"secondary"}" href="${route("article.html")}?id=${encodeURIComponent(p.id)}">Read story →</a></div></article>`;
+}
+function renderMagazine(filter){
+ const all=posts().sort((a,b)=>new Date(b.date)-new Date(a.date));
+ const list=filter==="All"?all:all.filter(p=>p.category===filter);
+ const el=document.getElementById("magazineContent");if(!el)return;
+ if(!list.length){el.innerHTML=`<div class="mag-empty">There are no ${filter.toLowerCase()} stories yet.</div>`;return}
+ let html=`<div class="mag-lead">${magazineStory(list[0],true)}<div class="mag-side">${list.slice(1,3).map(p=>magazineStory(p)).join("")}</div></div>`;
+ const rest=list.slice(3);
+ if(rest.length) html+=`<section class="mag-section"><div class="mag-section-head"><h2>${filter==="All"?"Latest Stories":filter==="Buying Guide"?"Buying Guides":filter+"s"}</h2><span>${rest.length} more</span></div><div class="mag-grid">${rest.slice(0,3).map(p=>`<article class="mag-card"><span class="tag">${p.category}</span><h3>${p.title}</h3><p>${p.excerpt||""}</p><div class="mag-meta">${dateUK(p.date)}</div><a class="read" href="${route("article.html")}?id=${encodeURIComponent(p.id)}">Read story →</a></article>`).join("")}</div></section>`;
+ if(filter==="All"){
+  ["News","Buying Guide","Comparison","Modification"].forEach(cat=>{
+   const items=all.filter(p=>p.category===cat).slice(0,3);if(!items.length)return;
+   const label=cat==="Buying Guide"?"Buying Guides":cat+"s";
+   html+=`<section class="mag-section"><div class="mag-section-head"><h2>${label}</h2><a href="#" onclick="setMagazineFilter('${cat}');return false">View all →</a></div><div class="mag-grid">${items.map(p=>`<article class="mag-card"><span class="tag">${p.category}</span><h3>${p.title}</h3><p>${p.excerpt||""}</p><a class="read" href="${route("article.html")}?id=${encodeURIComponent(p.id)}">Read story →</a></article>`).join("")}</div></section>`;
+  });
+ }
+ el.innerHTML=html;
+}
+function setMagazineFilter(filter){document.querySelectorAll("#magFilters button").forEach(b=>b.classList.toggle("active",b.dataset.filter===filter));renderMagazine(filter);window.scrollTo({top:0,behavior:"smooth"});}
+
 function setupGuides(){let p=posts().sort((a,b)=>new Date(b.date)-new Date(a.date));let f=p.find(x=>x.featured)||p[0];if($("feature"))$("feature").innerHTML=`<span class="tag">${f.category}</span><h2>${f.title}</h2><p>${f.excerpt||""}</p><small>${dateUK(f.date)}</small><div class="actions"><a class="btn" href="${route("article.html")}?id=${encodeURIComponent(f.id)}">Read guide →</a></div>`;let grid=$("guideGrid");if(grid)grid.innerHTML=p.map(x=>`<article class="card"><span class="tag">${x.category}</span><h3>${x.title}</h3><p>${x.excerpt||""}</p><div class="date">${dateUK(x.date)}</div><div class="actions"><a class="btn secondary" href="${route("article.html")}?id=${encodeURIComponent(x.id)}">Read guide →</a></div></article>`).join("")}
 function setupArticle(){let id=new URLSearchParams(location.search).get("id"),p=posts().find(x=>x.id===id)||posts()[0];if(!p)return;$("article").innerHTML=`<span class="tag">${p.category}</span><h1>${p.title}</h1><p class="excerpt">${p.excerpt||""}</p><div class="date">${dateUK(p.date)} · DriveWise</div><div class="reader-content">${p.body}</div>`}
 function subscribe(e){e.preventDefault();let email=$(e.target.dataset.input).value.trim();if(!email)return;let s=JSON.parse(localStorage.getItem(subsKey)||"[]");if(!s.includes(email))s.push(email);localStorage.setItem(subsKey,JSON.stringify(s));alert("You’re subscribed to the DriveWise Monthly.");e.target.reset()}
