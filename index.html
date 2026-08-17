@@ -662,10 +662,10 @@ function textFromEditor(){
  return editor?editor.innerText.trim():'';
 }
 function checkPostSEO(){
- const title=document.getElementById('postTitle').value.trim();
- const seoTitle=(document.getElementById('postSeoTitle').value||title).trim();
- const meta=document.getElementById('postMetaDescription').value.trim();
- const excerpt=document.getElementById('postExcerpt').value.trim();
+ const title=(document.getElementById('postTitle')?.value||'').trim();
+ const seoTitle=(document.getElementById('postSeoTitle')?.value||title).trim();
+ const meta=(document.getElementById('postMetaDescription')?.value||'').trim();
+ const excerpt=(document.getElementById('postExcerpt')?.value||'').trim();
  const bodyHtml=editorHTML(), text=textFromEditor();
  const headings=(bodyHtml.match(/<h2\b/gi)||[]).length+(bodyHtml.match(/<h3\b/gi)||[]).length;
  const links=(bodyHtml.match(/<a\b/gi)||[]).length;
@@ -836,8 +836,9 @@ function publishDriveWisePost(){
  clearPostEditor(false);renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
 }
 function clearPostEditor(show=true){
- ['postTitle','postExcerpt','postBody','postSeoTitle','postMetaDescription'].forEach(id=>document.getElementById(id).value='');
- document.getElementById('postBodyEditor').innerHTML='';document.getElementById('contentSeoPanel').style.display='none';
+ ['postTitle','postExcerpt','postBody','postSeoTitle','postMetaDescription'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+ const editor=document.getElementById('postBodyEditor');if(editor)editor.innerHTML='';
+ const panel=document.getElementById('contentSeoPanel');if(panel)panel.style.display='none';
  document.getElementById('postDate').value=new Date().toISOString().slice(0,10);
  document.getElementById('postFeatured').value='no';
  if(show){const m=document.getElementById('publishMessage');m.style.display='none'}
@@ -1219,7 +1220,10 @@ function runSEOAudit(){
 function showAdminLogin(){document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('adminLogin').style.display='grid';window.scrollTo(0,0)}
 function adminLogin(){
  if(document.getElementById('adminUser').value==='admin'&&document.getElementById('adminPass').value==='admin123'){
-   sessionStorage.setItem('dwAdmin','1');document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';document.getElementById('postDate').value=new Date().toISOString().slice(0,10);document.getElementById('postBodyEditor').innerHTML='';renderPublishedPostsAdmin();renderAnalytics();runSEOAudit();window.scrollTo(0,0);
+   sessionStorage.setItem('dwAdmin','1');document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';
+if(document.getElementById('postDate')) document.getElementById('postDate').value=new Date().toISOString().slice(0,10);
+if(document.getElementById('postBodyEditor')) document.getElementById('postBodyEditor').innerHTML='';
+if(typeof renderPublishedPostsAdmin==='function') renderPublishedPostsAdmin();renderAnalytics();runSEOAudit();window.scrollTo(0,0);
  }else document.getElementById('loginError').style.display='block';
 }
 function adminLogout(){sessionStorage.removeItem('dwAdmin');showHome()}
