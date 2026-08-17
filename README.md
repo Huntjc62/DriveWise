@@ -1,13 +1,14 @@
-# DriveWise v6
+# DriveWise v7
 
-Expanded My Garage vehicle selector:
-- 70+ UK-relevant makes
-- Hundreds of models
-- Model selection populated dynamically by make
-- Years selectable from 1980 through the current year
-- Added common classic, performance, luxury, EV, SUV and commercial models
-- Exact production-year fitment is intentionally not guessed: retailer registration/VIN lookup remains the final compatibility check
-- Existing 3-retailer parts comparison retained
-- Existing pre-owned shortlist, Auto Trader hand-off, Parkers references, admin analytics and SEO audit retained
+Vehicle catalogue update:
+- Reworked model labels so numeric-only entries are shown with their make (for example, Mazda 3 rather than 3)
+- Broader UK-market make/model catalogue
+- Catalogue naming aligned to the make/model structure used by Auto Trader UK
+- Parkers included as the specification reference source
+- Source links are visible in My Garage
+- Added a direct Auto Trader used-car link for the selected make/model
+- Retains dynamic year selection from 1980 to the current year
+- Retains the three-retailer parts comparison
 
-This is a broad local catalogue rather than a claim of literally every vehicle ever sold. For production, replace/augment it with a proper vehicle-fitment dataset or authorised API/feed so exact derivatives, engines, trims and production years can be verified.
+Important production note:
+Auto Trader provides a make/model selector and an A-Z brand directory, while Parkers provides make/model and registration-based specification lookup. The local catalogue is therefore a UI seed, not a claim that every derivative, trim or production year is represented. For a truly exhaustive and exact system, connect DriveWise to an authorised vehicle-fitment/API/data feed and use registration/VIN lookup before declaring a part compatible.
