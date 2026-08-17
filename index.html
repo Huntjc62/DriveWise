@@ -175,7 +175,7 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
     <div class="garage-field"><label for="garagePart">What are you looking for?</label><select id="garagePart"><option value="suspension">Suspension</option><option value="brakes">Brakes</option><option value="exhaust">Exhaust</option><option value="wheels">Wheels & tyres</option><option value="intake">Intake / air filter</option><option value="styling">Styling</option><option value="maintenance">Maintenance parts</option></select></div>
     <button class="btn" id="comparePartsBtn">Compare parts</button>
   </div>
-  <div id="garageResult" class="garage-result" aria-live="polite"></div>
+  <div class="notice">Large UK-focused catalogue: 70+ makes and hundreds of models, with selectable years from 1980 to the current year. For exact fitment, the retailer should still verify the vehicle by registration/VIN.</div><div id="garageResult" class="garage-result" aria-live="polite"></div>
 </div>
 
 <div class="feature">
@@ -387,18 +387,9 @@ function searchSelectedAutoTrader(){
 
 
 // ---------------- DriveWise My Garage + 3-retailer comparison ----------------
-const garageModels={
- 'Ford':{'Fiesta':[2018,2019,2020,2021,2022,2023,2024],'Focus':[2018,2019,2020,2021,2022,2023,2024],'Mustang':[2018,2019,2020,2021,2022,2023,2024]},
- 'Volkswagen':{'Golf':[2018,2019,2020,2021,2022,2023,2024],'Polo':[2018,2019,2020,2021,2022,2023,2024],'GTI':[2018,2019,2020,2021,2022,2023,2024]},
- 'BMW':{'3 Series':[2018,2019,2020,2021,2022,2023,2024],'1 Series':[2018,2019,2020,2021,2022,2023,2024],'M3':[2018,2019,2020,2021,2022,2023,2024]},
- 'Audi':{'A3':[2018,2019,2020,2021,2022,2023,2024],'A4':[2018,2019,2020,2021,2022,2023,2024],'TT':[2018,2019,2020,2021,2022,2023,2024]},
- 'Honda':{'Civic':[2018,2019,2020,2021,2022,2023,2024],'Jazz':[2018,2019,2020,2021,2022,2023,2024],'Type R':[2018,2019,2020,2021,2022,2023,2024]},
- 'Mazda':{'MX-5':[2018,2019,2020,2021,2022,2023,2024],'Mazda 3':[2018,2019,2020,2021,2022,2023,2024],'CX-5':[2018,2019,2020,2021,2022,2023,2024]},
- 'Toyota':{'GT86':[2018,2019,2020,2021,2022],'GR Yaris':[2021,2022,2023,2024],'Corolla':[2019,2020,2021,2022,2023,2024]},
- 'Vauxhall':{'Corsa':[2018,2019,2020,2021,2022,2023,2024],'Astra':[2018,2019,2020,2021,2022,2023,2024]},
- 'Mercedes-Benz':{'A-Class':[2018,2019,2020,2021,2022,2023,2024],'C-Class':[2018,2019,2020,2021,2022,2023,2024]},
- 'Skoda':{'Octavia':[2018,2019,2020,2021,2022,2023,2024],'Fabia':[2018,2019,2020,2021,2022,2023,2024]}
-};
+const garageModels={"Alfa Romeo":["147","156","159","4C","Giulia","Giulietta","Giulia Quadrifoglio","Stelvio","Tonale"],"Alpine":["A110"],"Aston Martin":["Cygnet","DB7","DB9","DB11","DB12","DBS","DBS Superleggera","Rapide","V8 Vantage","V12 Vantage","Vantage"],"Audi":["A1","A2","A3","A4","A5","A6","A7","A8","Q2","Q3","Q4 e-tron","Q5","Q7","Q8","R8","TT","e-tron","e-tron GT","RS3","RS4","RS5","RS6","RS7","S3","S4","S5","S6","S7","S8","SQ5","SQ7","SQ8"],"Bentley":["Arnage","Bentayga","Continental GT","Continental GTC","Flying Spur","Mulsanne"],"BMW":["1 Series","2 Series","3 Series","4 Series","5 Series","6 Series","7 Series","8 Series","i3","i4","i5","i7","i8","iX","iX1","iX3","M2","M3","M4","M5","M6","M8","X1","X2","X3","X4","X5","X6","X7","Z4"],"BYD":["Atto 3","Dolphin","Han","Seal","Seal U","Tang"],"Citroen":["C1","C2","C3","C3 Aircross","C4","C4 Cactus","C4 Picasso","C5","C5 Aircross","C5 X","Berlingo","Dispatch","DS3"],"Cupra":["Ateca","Born","Formentor","Leon","Tavascan","Terramar"],"Dacia":["Duster","Jogger","Logan","Sandero","Spring"],"Daewoo":["Kalos","Lacetti","Matiz","Nubira"],"Daihatsu":["Copen","Cuore","Sirion","Terios"],"DS":["DS 3","DS 4","DS 5","DS 7","DS 9"],"Fiat":["124 Spider","500","500e","500L","500X","Bravo","Doblo","Ducato","Grande Punto","Panda","Punto","Tipo"],"Ford":["B-Max","C-Max","EcoSport","Edge","Escort","Explorer","Fiesta","Focus","Galaxy","Grand C-Max","Ka","Kuga","Mondeo","Mustang","Mustang Mach-E","Puma","Ranger","S-Max","Tourneo Connect","Transit","Transit Custom"],"Genesis":["G70","G80","G90","GV60","GV70","GV80"],"Honda":["Accord","Civic","CR-V","CR-Z","E","HR-V","Jazz","NSX","S2000","Type R"],"Hyundai":["Atos","Bayon","Coupe","i10","i20","i30","i40","Ioniq","Ioniq 5","Ioniq 6","Kona","Nexo","Santa Fe","Tucson","Veloster"],"Infiniti":["EX","FX","G","Q30","Q50","Q60","Q70"],"Isuzu":["D-Max","MU-X"],"Jaguar":["E-Pace","F-Pace","F-Type","I-Pace","XE","XF","XJ"],"Jeep":["Avenger","Cherokee","Compass","Gladiator","Grand Cherokee","Renegade","Wrangler"],"Kia":["Carens","Ceed","EV3","EV6","EV9","Niro","Optima","Picanto","Proceed","Rio","Sorento","Soul","Sportage","Stinger","Venga"],"Lamborghini":["Aventador","Huracan","Revuelto","Urus"],"Land Rover":["Defender","Discovery","Discovery Sport","Freelander","Range Rover","Range Rover Evoque","Range Rover Sport","Range Rover Velar"],"Lexus":["CT","ES","GS","IS","LBX","LC","LM","LS","NX","RC","RX","RZ","UX"],"Lotus":["Elise","Emira","Evora","Exige"],"Maserati":["Ghibli","GranCabrio","GranTurismo","Grecale","Levante","MC20","Quattroporte"],"Mazda":["2","3","5","6","CX-3","CX-30","CX-5","CX-60","CX-80","MX-5","RX-8"],"McLaren":["540C","570S","600LT","650S","675LT","720S","750S","Artura","GT","MP4-12C"],"Mercedes-Benz":["A-Class","B-Class","C-Class","CLA","CLE","CLS","E-Class","EQA","EQB","EQC","EQE","EQE SUV","EQS","EQS SUV","G-Class","GLA","GLB","GLC","GLE","GLS","S-Class","SL","SLC","V-Class","Vito","AMG GT"],"MG":["3","4","5","6","Cyberster","F","HS","Marvel R","MG3","ZS","ZS EV"],"MINI":["Clubman","Convertible","Countryman","Coupe","Hatch","Paceman","Roadster","Cooper","Aceman"],"Mitsubishi":["ASX","Colt","Eclipse Cross","L200","Outlander","Shogun","Space Star"],"Nissan":["350Z","370Z","Ariya","Juke","Leaf","Micra","Murano","Navara","Note","Qashqai","X-Trail","GT-R"],"Peugeot":["107","108","208","2008","207","3008","308","407","508","5008","Partner","RCZ","Rifter","Traveller"],"Porsche":["718 Cayman","718 Boxster","911","918 Spyder","Cayenne","Macan","Panamera","Taycan"],"Renault":["5","Captur","Clio","Espace","Kadjar","Kangoo","Koleos","Laguna","Megane","Scenic","Twingo","Zoe","Austral","Arkana"],"Rolls-Royce":["Cullinan","Dawn","Ghost","Phantom","Spectre","Wraith"],"SEAT":["Alhambra","Altea","Arona","Ateca","Ibiza","Leon","Tarraco","Toledo"],"Skoda":["Citigo","Enyaq","Fabia","Kamiq","Karoq","Kodiaq","Octavia","Rapid","Scala","Superb","Yeti"],"Smart":["ForFour","ForTwo","#1","#3"],"Subaru":["BRZ","Forester","Impreza","Legacy","Outback","Solterra","WRX"],"Suzuki":["Alto","Baleno","Celerio","Ignis","Jimny","S-Cross","Swift","SX4","Vitara"],"Tesla":["Model 3","Model S","Model X","Model Y","Cybertruck"],"Toyota":["Aygo","Aygo X","bZ4X","C-HR","Camry","Celica","Corolla","GR86","GR Supra","GR Yaris","GT86","Highlander","Hilux","Land Cruiser","Mirai","Prius","RAV4","Supra","Urban Cruiser","Yaris"],"Vauxhall":["Adam","Agila","Ampera","Astra","Combo","Corsa","Crossland","Grandland","Insignia","Meriva","Mokka","Movano","Vivaro","Zafira"],"Volkswagen":["Amarok","Arteon","Beetle","Bora","Caddy","CC","Crafter","Eos","Golf","ID.3","ID.4","ID.5","ID.7","ID.Buzz","Jetta","Passat","Phaeton","Polo","Scirocco","Sharan","T-Cross","T-Roc","Tiguan","Touareg","Touran","Up!"],"Volvo":["C30","C40","C70","EX30","EX40","EX90","S40","S60","S80","S90","V40","V50","V60","V70","V90","XC40","XC60","XC70","XC90"],"Other / Import":["Other model"]};
+const garageYearStart=1980;
+const garageYearEnd=new Date().getFullYear();
 const partInfo={
  suspension:{label:'Suspension',hint:'Lowering springs, shocks, coilovers, bushes and handling upgrades.',dt:'https://www.demon-tweeks.com/uk/performance/suspension/',ecp:'https://www.eurocarparts.com/car-parts/suspension-and-steering',half:'https://www.halfords.com/motoring/car-parts/suspension-and-steering/'},
  brakes:{label:'Brakes',hint:'Pads, discs, fluid, braided lines and performance brake upgrades.',dt:'https://www.demon-tweeks.com/uk/performance/brakes/',ecp:'https://www.eurocarparts.com/car-parts/brakes',half:'https://www.halfords.com/motoring/car-parts/brakes/'},
@@ -408,16 +399,25 @@ const partInfo={
  styling:{label:'Styling',hint:'Exterior and appearance upgrades. Check fitment and road-use legality before ordering.',dt:'https://www.demon-tweeks.com/uk/performance/',ecp:'https://www.eurocarparts.com/performance-car-parts',half:'https://www.halfords.com/motoring/car-accessories/'},
  maintenance:{label:'Maintenance parts',hint:'Filters, service components and replacement parts to establish a healthy baseline.',dt:'https://www.demon-tweeks.com/uk/performance/',ecp:'https://www.eurocarparts.com/',half:'https://www.halfords.com/motoring/car-parts/'}
 };
+
+function populateSelect(select, values, placeholder){
+  select.innerHTML=`<option value="">${placeholder}</option>`;
+  values.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;select.appendChild(o)});
+}
 function fillGarageModels(){
  const make=document.getElementById('garageMake'), model=document.getElementById('garageModel'), year=document.getElementById('garageYear');
- model.innerHTML='<option value="">Choose model</option>';year.innerHTML='<option value="">Choose year</option>';year.disabled=true;
- const data=garageModels[make.value];model.disabled=!data;
- if(data)Object.keys(data).forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;model.appendChild(o)});
+ const data=garageModels[make.value];
+ populateSelect(model,data?Object.keys(data):[],'Choose model');
+ model.disabled=!data;
+ populateSelect(year,[],'Choose year');year.disabled=true;
 }
 function fillGarageYears(){
  const make=document.getElementById('garageMake').value,model=document.getElementById('garageModel').value,year=document.getElementById('garageYear');
- year.innerHTML='<option value="">Choose year</option>';const years=garageModels[make]?.[model];year.disabled=!years;
- if(years)years.forEach(y=>{const o=document.createElement('option');o.value=y;o.textContent=y;year.appendChild(o)});
+ const years=[];
+ if(garageModels[make]?.[model]){
+   for(let y=garageYearStart;y<=garageYearEnd;y++) years.push(y);
+ }
+ populateSelect(year,years,'Choose year');year.disabled=!years.length;
 }
 function retailerSearchUrl(base,make,model,part){
  // The retailers' own sites provide vehicle/reg or category selection; we hand the user to the relevant category rather than pretending to have live prices.
@@ -440,7 +440,12 @@ function compareGarageParts(){
  <div class="compare-note"><b>${p.label}:</b> ${p.hint} DriveWise does not claim these are identical products or live prices. This comparison sends you to each retailer's own catalogue so you can check exact fitment, brand, specification, availability, delivery and price.</div>`;
  out.querySelectorAll('.part-tab').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById('garagePart').value=btn.dataset.part;compareGarageParts()}));
 }
-document.getElementById('garageMake')?.addEventListener('change',fillGarageModels);
+const garageMakeSelect=document.getElementById('garageMake');
+if(garageMakeSelect){
+  const makes=Object.keys(garageModels).sort((a,b)=>a.localeCompare(b));
+  populateSelect(garageMakeSelect,makes,'Choose make');
+  garageMakeSelect.addEventListener('change',fillGarageModels);
+}
 document.getElementById('garageModel')?.addEventListener('change',fillGarageYears);
 document.getElementById('comparePartsBtn')?.addEventListener('click',compareGarageParts);
 
