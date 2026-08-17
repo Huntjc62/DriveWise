@@ -1,16 +1,18 @@
-# DriveWise v8
+# DriveWise v9
 
-Fixed the model selector display issue.
+Fixed the My Garage model selector bug.
 
-- Numeric-only model names are now displayed with the full make, e.g.:
-  - BMW 3 Series (already represented as a full model name)
-  - Alfa Romeo 147
-  - Renault 5
-  - Peugeot 107
-  - Fiat 500
-- The model dropdown now explicitly uses the display-name helper.
-- Vehicle naming remains aligned to the UK Auto Trader make/model structure, with Parkers used as the specification reference.
-- Source links are shown in My Garage.
-- Existing years, parts comparison, Auto Trader hand-off, admin analytics and SEO tools remain.
+The vehicle catalogue is stored as arrays of actual model names. The previous code incorrectly used Object.keys(array), which returned 0, 1, 2, 3... instead of the model names. It now uses the array values directly.
 
-For a production-grade exhaustive catalogue, the next step is an authorised vehicle data/fitment API that returns exact derivatives, engines, trims and registration/VIN matches. Static website pages cannot reliably provide that level of fitment accuracy.
+Examples for Ford now display:
+- Fiesta
+- Focus
+- Kuga
+- Mustang
+- Puma
+- Ranger
+- etc.
+
+The year selector is also fixed to recognise the selected model correctly.
+
+All existing DriveWise features are retained.

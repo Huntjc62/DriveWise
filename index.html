@@ -419,19 +419,26 @@ function displayModelName(make, model){
 }
 function populateSelect(select, values, placeholder){
   select.innerHTML=`<option value="">${placeholder}</option>`;
-  values.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=(select.id==='garageModel'?displayModelName(document.getElementById('garageMake').value,v):v);select.appendChild(o)});
+  (values||[]).forEach(v=>{
+    const o=document.createElement('option');
+    o.value=v;
+    o.textContent=select.id==='garageModel'
+      ? displayModelName(document.getElementById('garageMake').value,v)
+      : v;
+    select.appendChild(o);
+  });
 }
 function fillGarageModels(){
  const make=document.getElementById('garageMake'), model=document.getElementById('garageModel'), year=document.getElementById('garageYear');
  const data=garageModels[make.value];
- populateSelect(model,data?Object.keys(data):[],'Choose model');
+ populateSelect(model,data||[],'Choose model');
  model.disabled=!data;
  populateSelect(year,[],'Choose year');year.disabled=true;
 }
 function fillGarageYears(){
  const make=document.getElementById('garageMake').value,model=document.getElementById('garageModel').value,year=document.getElementById('garageYear');
  const years=[];
- if(garageModels[make]?.[model]){
+ if(garageModels[make]?.includes(model)){
    for(let y=garageYearStart;y<=garageYearEnd;y++) years.push(y);
  }
  populateSelect(year,years,'Choose year');year.disabled=!years.length;
