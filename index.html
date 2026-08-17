@@ -156,6 +156,19 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 @media(max-width:900px){.garage-welcome{grid-template-columns:1fr}.garage-tool-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.full-car-form{grid-template-columns:1fr}.full-car-form .wide{grid-column:auto}.garage-profile-grid{grid-template-columns:repeat(2,1fr)}.garage-tool-grid{grid-template-columns:1fr}}
 </style>
+
+<style id="content-publishing-styles">
+.monthly-feature{margin:0 0 28px;background:linear-gradient(135deg,#171d23,#0f1408);border:1px solid #39471a;border-radius:24px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:end}
+.monthly-feature .monthly-badge{display:inline-block;background:#d7ff3f;color:#080a0d;border-radius:99px;padding:6px 10px;font-size:10px;font-weight:900;letter-spacing:.08em}
+.monthly-feature h2{font-size:38px;line-height:1;margin:10px 0}.monthly-feature p{color:#aeb6bd;max-width:720px;margin:0}.monthly-feature .date{font-size:11px;color:#7f8993;margin-top:12px}
+.monthly-feature .monthly-cta{white-space:nowrap}
+.newsletter-signup{margin:28px 0;background:#11151a;border:1px solid #2a323b;border-radius:20px;padding:24px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.newsletter-signup h3{margin:0 0 5px}.newsletter-signup p{margin:0;color:#9da6b0;font-size:13px}
+.newsletter-form{display:flex;gap:8px;min-width:360px}.newsletter-form input{background:#0b0e11;border:1px solid #303841;color:#fff;padding:11px;border-radius:8px;min-width:0;flex:1}
+.blog-posts{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:18px}.blog-post{background:#11151a;border:1px solid #2a323b;border-radius:18px;padding:20px}.blog-post .tag{margin-bottom:12px;display:inline-block}.blog-post h3{font-size:20px;margin:0 0 8px}.blog-post p{font-size:13px;color:#9da6b0}.blog-post .blog-date{font-size:10px;color:#7f8993;margin-top:14px}
+.admin-content-editor{margin-top:18px}.editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.editor-grid .wide{grid-column:1/-1}.editor-field label{display:block;color:#9da6b0;font-size:11px;margin-bottom:6px}.editor-field input,.editor-field select,.editor-field textarea{width:100%;background:#0b0e11;border:1px solid #303841;color:#fff;padding:11px;border-radius:8px;outline:none}.editor-field textarea{min-height:160px;resize:vertical}.published-posts{display:grid;gap:10px;margin-top:18px}.published-row{background:#0b0e11;border:1px solid #252c33;border-radius:12px;padding:14px;display:flex;justify-content:space-between;gap:15px;align-items:center}.published-row b{display:block}.published-row span{font-size:11px;color:#7f8993}
+@media(max-width:800px){.monthly-feature{grid-template-columns:1fr}.newsletter-signup{display:block}.newsletter-form{margin-top:15px;min-width:0}.blog-posts{grid-template-columns:1fr}.editor-grid{grid-template-columns:1fr}.editor-grid .wide{grid-column:auto}.published-row{display:block}.published-row .btn{margin-top:10px}}
+</style>
 </head>
 <body>
 <header>
@@ -211,6 +224,13 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <section class="page" id="guides">
 <div class="container">
 <div class="section-head"><div><div class="eyebrow">Buying guides</div><h2>Start with the right question.</h2></div><p>Build content around the decisions real buyers make before handing over their money.</p></div>
+<div id="monthlyFeature" class="monthly-feature"></div>
+<div class="newsletter-signup">
+  <div><h3>Get the DriveWise Monthly</h3><p>One useful car guide, buying tip, modification idea and market insight delivered once a month.</p></div>
+  <form class="newsletter-form" onsubmit="subscribeNewsletter(event)"><input id="newsletterEmail" type="email" placeholder="Your email address" required><button class="btn" type="submit">Subscribe →</button></form>
+</div>
+<div id="publishedBlogPosts" class="blog-posts"></div>
+
 <div class="cards">
 <div class="card"><span class="tag">CHECKLIST</span><h3>How to inspect a used car</h3><p>Paint, tyres, brakes, warning lights, cold starts, leaks, history and the test drive.</p><a href="#guides" style="color:var(--accent);font-size:13px;font-weight:800">More buying guides →</a></div>
 <div class="card"><span class="tag">MONEY</span><h3>What can I afford?</h3><p>Look beyond the purchase price: insurance, tax, servicing, tyres, fuel and unexpected repairs.</p></div>
@@ -453,7 +473,28 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
     </div>
   </div>
 
-  <div class="admin-panel" style="margin-bottom:18px">
+  
+<div class="admin-panel admin-content-editor" style="margin-bottom:18px">
+  <div style="display:flex;justify-content:space-between;gap:20px;align-items:end">
+    <div><h2>Publish content</h2><div class="audit-meta">Create buying guides, news stories and the monthly DriveWise newsletter directly from the admin area.</div></div>
+    <span class="tag">CONTENT CMS</span>
+  </div>
+  <div class="editor-grid" style="margin-top:18px">
+    <div class="editor-field"><label>Title</label><input id="postTitle" placeholder="e.g. 7 things to check before buying a used Fiesta"></div>
+    <div class="editor-field"><label>Category</label><select id="postCategory"><option>Buying Guide</option><option>News</option><option>Modification</option><option>Comparison</option><option>Monthly Newsletter</option></select></div>
+    <div class="editor-field"><label>Publish date</label><input id="postDate" type="date"></div>
+    <div class="editor-field"><label>Feature as monthly newsletter?</label><select id="postFeatured"><option value="no">No</option><option value="yes">Yes — make this the Monthly DriveWise</option></select></div>
+    <div class="editor-field wide"><label>Short description / excerpt</label><input id="postExcerpt" placeholder="A short description used on the guides page."></div>
+    <div class="editor-field wide"><label>Article content</label><textarea id="postBody" placeholder="Write the article here. You can use plain text with paragraphs."></textarea></div>
+  </div>
+  <div class="garage-actions">
+    <button class="btn" onclick="publishDriveWisePost()">Publish article</button>
+    <button class="parkers-btn" onclick="clearPostEditor()">Clear</button>
+  </div>
+  <div id="publishMessage" class="notice" style="display:none"></div>
+  <div class="published-posts" id="publishedPostsAdmin"></div>
+</div>
+<div class="admin-panel" style="margin-bottom:18px">
     <div style="display:flex;justify-content:space-between;gap:20px;align-items:end">
       <div><h2>Custom SEO audit</h2><div class="audit-meta">Checks the actual DriveWise document for common technical and on-page SEO issues.</div></div>
       <div style="text-align:right"><div class="seo-score" id="seoScoreBig">—</div><div class="audit-meta">overall score</div></div>
@@ -492,6 +533,77 @@ showHome();
 
 
 
+
+
+// ---------------- DriveWise content publishing + Monthly Newsletter ----------------
+const seedPosts=[
+ {id:'seed-monthly',title:'The DriveWise Monthly: Used cars, mods and what to watch',category:'Monthly Newsletter',date:'2026-08-01',excerpt:'Your monthly round-up of used-car advice, modification ideas and things worth checking before you buy.',body:'Welcome to the first DriveWise Monthly. Each month we will bring together practical used-car advice, modification inspiration, comparisons and things worth checking before you spend your money.',featured:true},
+ {id:'seed-inspect',title:'How to inspect a used car before you buy',category:'Buying Guide',date:'2026-07-20',excerpt:'Paint, tyres, brakes, warning lights, cold starts, leaks, history and the test drive.',body:'A proper used-car inspection starts before the test drive. Check the paperwork, walk around the bodywork, inspect the tyres and brakes, look for warning lights and insist on seeing the car start from cold where possible.',featured:false},
+ {id:'seed-mods',title:'How to choose your first modification',category:'Modification',date:'2026-07-12',excerpt:'Start with the goal rather than the parts catalogue. A good modification should solve a problem or improve something you actually notice.',body:'Before buying a part, decide what you want to change: handling, appearance, sound, comfort or performance. Then choose supporting parts and check fitment for your exact vehicle.',featured:false}
+];
+function getDriveWisePosts(){
+ try{
+  const saved=JSON.parse(localStorage.getItem('drivewisePosts')||'null');
+  if(Array.isArray(saved)) return saved;
+ }catch(e){}
+ localStorage.setItem('drivewisePosts',JSON.stringify(seedPosts));
+ return seedPosts;
+}
+function saveDriveWisePosts(posts){localStorage.setItem('drivewisePosts',JSON.stringify(posts))}
+function formatPostDate(date){if(!date)return '';return new Date(date+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
+function renderGuidesContent(){
+ const posts=getDriveWisePosts().sort((a,b)=>new Date(b.date)-new Date(a.date));
+ const feature=posts.find(p=>p.featured)||posts.find(p=>p.category==='Monthly Newsletter')||posts[0];
+ const f=document.getElementById('monthlyFeature');
+ if(feature){
+  f.innerHTML=`<div><span class="monthly-badge">DRIVEWISE MONTHLY</span><h2>${feature.title}</h2><p>${feature.excerpt||''}</p><div class="date">${formatPostDate(feature.date)} · ${feature.category}</div></div><div class="monthly-cta"><button class="btn" onclick="openPublishedPost('${feature.id}')">Read this month's edition →</button></div>`;
+ }
+ const grid=document.getElementById('publishedBlogPosts');
+ if(grid)grid.innerHTML=posts.filter(p=>p.id!==feature?.id).slice(0,9).map(p=>`<article class="blog-post"><span class="tag">${p.category}</span><h3>${p.title}</h3><p>${p.excerpt||''}</p><div class="blog-date">${formatPostDate(p.date)}</div><button class="parkers-btn" style="margin-top:12px" onclick="openPublishedPost('${p.id}')">Read article →</button></article>`).join('');
+}
+function openPublishedPost(id){
+ const post=getDriveWisePosts().find(p=>p.id===id);if(!post)return;
+ const overlay=document.createElement('div');overlay.className='admin-login';overlay.style.display='flex';overlay.style.position='fixed';overlay.style.inset='0';overlay.style.zIndex='9999';overlay.id='postOverlay';
+ overlay.innerHTML=`<div class="login-box" style="max-width:820px;max-height:85vh;overflow:auto;text-align:left"><span class="tag">${post.category}</span><h2 style="font-size:38px;margin:12px 0">${post.title}</h2><div class="audit-meta">${formatPostDate(post.date)}</div><div style="white-space:pre-wrap;color:#cbd1d6;line-height:1.75;margin-top:20px">${post.body}</div><button class="btn" style="margin-top:24px" onclick="document.getElementById('postOverlay').remove()">Close</button></div>`;
+ document.body.appendChild(overlay);
+}
+function publishDriveWisePost(){
+ const title=document.getElementById('postTitle').value.trim(),category=document.getElementById('postCategory').value,date=document.getElementById('postDate').value,excerpt=document.getElementById('postExcerpt').value.trim(),body=document.getElementById('postBody').value.trim(),featured=document.getElementById('postFeatured').value==='yes';
+ const msg=document.getElementById('publishMessage');
+ if(!title||!date||!body){msg.style.display='block';msg.textContent='Please add a title, publish date and article content.';return}
+ let posts=getDriveWisePosts();
+ if(featured)posts=posts.map(p=>({...p,featured:false}));
+ const post={id:'post-'+Date.now(),title,category,date,excerpt,body,featured};
+ posts.unshift(post);saveDriveWisePosts(posts);
+ msg.style.display='block';msg.textContent=`Published: ${title}`;
+ clearPostEditor(false);renderGuidesContent();renderPublishedPostsAdmin();
+}
+function clearPostEditor(show=true){
+ ['postTitle','postExcerpt','postBody'].forEach(id=>document.getElementById(id).value='');
+ document.getElementById('postDate').value=new Date().toISOString().slice(0,10);
+ document.getElementById('postFeatured').value='no';
+ if(show){const m=document.getElementById('publishMessage');m.style.display='none'}
+}
+function renderPublishedPostsAdmin(){
+ const el=document.getElementById('publishedPostsAdmin');if(!el)return;
+ const posts=getDriveWisePosts();
+ el.innerHTML='<div class="audit-meta">Published content</div>'+posts.map(p=>`<div class="published-row"><div><b>${p.title}</b><span>${p.category} · ${formatPostDate(p.date)}${p.featured?' · Featured':''}</span></div><button class="parkers-btn" onclick="deleteDriveWisePost('${p.id}')">Delete</button></div>`).join('');
+}
+function deleteDriveWisePost(id){
+ if(!confirm('Delete this article?'))return;
+ const posts=getDriveWisePosts().filter(p=>p.id!==id);saveDriveWisePosts(posts);renderGuidesContent();renderPublishedPostsAdmin();
+}
+function subscribeNewsletter(event){
+ event.preventDefault();
+ const email=document.getElementById('newsletterEmail').value.trim();
+ if(!email)return;
+ const list=JSON.parse(localStorage.getItem('drivewiseNewsletterSubscribers')||'[]');
+ if(!list.includes(email))list.push(email);
+ localStorage.setItem('drivewiseNewsletterSubscribers',JSON.stringify(list));
+ document.getElementById('newsletterEmail').value='';
+ alert('You’re subscribed to the DriveWise Monthly.');
+}
+renderGuidesContent();
 
 // ---------------- DriveWise My Garage ----------------
 const garageCarBody={};
@@ -847,7 +959,7 @@ function runSEOAudit(){
 function showAdminLogin(){document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('adminLogin').style.display='grid';window.scrollTo(0,0)}
 function adminLogin(){
  if(document.getElementById('adminUser').value==='admin'&&document.getElementById('adminPass').value==='admin123'){
-   sessionStorage.setItem('dwAdmin','1');document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';renderAnalytics();runSEOAudit();window.scrollTo(0,0);
+   sessionStorage.setItem('dwAdmin','1');document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';document.getElementById('postDate').value=new Date().toISOString().slice(0,10);renderPublishedPostsAdmin();renderAnalytics();runSEOAudit();window.scrollTo(0,0);
  }else document.getElementById('loginError').style.display='block';
 }
 function adminLogout(){sessionStorage.removeItem('dwAdmin');showHome()}
@@ -859,7 +971,7 @@ openSection=function(which){_openSection(which);trackPage()};
 const _showHome=showHome;
 showHome=function(){_showHome();trackPage()};
 trackPage();
-if(sessionStorage.getItem('dwAdmin')==='1'){document.getElementById('home').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';renderAnalytics();runSEOAudit()}
+if(sessionStorage.getItem('dwAdmin')==='1'){document.getElementById('home').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';document.getElementById('postDate').value=new Date().toISOString().slice(0,10);renderPublishedPostsAdmin();renderAnalytics();runSEOAudit()}
 </script>
 </body>
 </html>

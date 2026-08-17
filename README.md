@@ -1,29 +1,25 @@
-# DriveWise v11
+# DriveWise v12
 
-Major My Garage upgrade.
+Added a content publishing system and made the monthly blog/newsletter a core feature.
 
-New default journey:
-Homepage -> Open My Garage -> enter exact car details -> find parts / plan mods / Mod Library / Auto Trader.
+Public Guides page:
+- Featured DriveWise Monthly section
+- Monthly edition CTA
+- Blog/article cards
+- Newsletter signup
+- Published articles open in a readable article view
 
-My Garage fields:
-- Make
-- Model
-- Year
-- Trim / full model (e.g. ST-3)
-- Engine
-- Fuel
-- Gearbox
-- Registration
-- Garage nickname
+Admin:
+- Publish article
+- Title
+- Category
+- Publish date
+- Excerpt
+- Full article content
+- Feature an article as the Monthly DriveWise edition
+- View published articles
+- Delete articles
 
-Garage features:
-- Saves the car locally in this prototype
-- Renders a representative vehicle outline based on the selected car/body category
-- Shows the saved vehicle profile
-- Find Parts opens the existing three-retailer comparison pre-filled with the garage vehicle
-- Plan Modifications opens the modification workflow
-- Mod Library link
-- Auto Trader search for the saved vehicle
-- Garage is now the main welcome action instead of Explore Car Mods
+Content is stored in localStorage for this prototype. For production, move posts and newsletter subscribers to Firebase/Firestore (or another database) and connect the newsletter signup to an email platform such as Mailchimp, Brevo or a transactional/email marketing service.
 
-Important: the outline is a representative SVG silhouette selected by vehicle category. It is not a photographic/exact body CAD silhouette. For exact model-specific silhouettes, the next production step would be to add licensed vehicle SVG/image assets for individual model/generation combinations.
+The existing My Garage, vehicle selector, parts comparison, Mod Library, pre-owned shortlist, analytics and SEO audit remain.
