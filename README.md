@@ -1,23 +1,22 @@
-# DriveWise v2 — fixed multi-page package
+# DriveWise v3 — standalone multi-page package
 
-The previous build used root-absolute paths such as `/assets/app.js`. Those can fail when the ZIP is opened locally or hosted in a sub-folder. This version uses relative paths throughout.
+This version fixes the blank/un-styled page problem by making every HTML page self-contained: its CSS and JavaScript are embedded directly in that page. The package still has a separate HTML file for every page.
 
 Pages:
-- `index.html` — public homepage
-- `pages/guides.html` — news/guides
-- `pages/article.html` — individual article
-- `pages/account.html` — account
-- `pages/garage.html` — My Garage
-- `pages/cars.html` — car search
-- `pages/parts.html` — parts
-- `pages/mods.html` — modification planner
-- `pages/mod-library.html` — public mod library
-- `pages/admin-login.html` — admin login
-- `pages/admin.html` — CMS
+- index.html
+- pages/guides.html
+- pages/article.html
+- pages/account.html
+- pages/garage.html
+- pages/cars.html
+- pages/parts.html
+- pages/mods.html
+- pages/mod-library.html
+- pages/admin-login.html
+- pages/admin.html
 
-Demo admin:
-`admin` / `admin123`
+The assets folder is retained as the source copies, but the HTML pages do not depend on those files to render.
 
-For testing, extract the package and run `python -m http.server 8000`, then open `http://localhost:8000/`.
+Demo admin: admin / admin123
 
-The prototype uses localStorage/sessionStorage. Production should use Firebase Authentication + Firestore.
+Member accounts and content use browser storage for this prototype. Production should use Firebase Authentication + Firestore.
