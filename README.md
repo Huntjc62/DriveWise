@@ -1,45 +1,38 @@
-# DriveWise v17 — Editorial-first redesign
+# DriveWise — Multi-page package
 
-DriveWise is now structured first as a public car news/guides publication.
+This version is deliberately split into separate pages instead of one large index file.
 
-PUBLIC / NO ACCOUNT REQUIRED:
-- Homepage is News & Guides
-- Latest/featured articles
-- Buying guides
-- Modification guides
-- News
-- Comparisons
-- DriveWise Monthly
-- Newsletter signup
-- Full guide reading pages
+## Structure
 
-ACCOUNT REQUIRED:
-- My Garage
-- Save/add your car
-- Search used cars
-- Find/compare parts
-- Personalised modification tools
+- `index.html` — public editorial homepage
+- `pages/guides.html` — news and guides library
+- `pages/article.html` — individual article page
+- `pages/account.html` — member account
+- `pages/garage.html` — My Garage
+- `pages/cars.html` — used-car search
+- `pages/parts.html` — parts search/comparison
+- `pages/mods.html` — modification planner
+- `pages/mod-library.html` — public modification education
+- `pages/admin-login.html` — admin login
+- `pages/admin.html` — admin CMS
+- `assets/style.css` — shared styling
+- `assets/data.js` — seed content and vehicle data
+- `assets/app.js` — shared application logic
+- `firebase-config.example.js` — production Firebase placeholder
 
-The site prompts visitors to create a free account only when they try to use a member feature.
+## Product model
 
-Header:
-- News & Guides
-- My Garage
-- Search Cars
-- Find Parts
-- Admin
+Public first:
+News, buying guides, modification guides, comparisons and DriveWise Monthly are readable without an account.
 
-Prototype account system:
-- Uses localStorage for the demo
-- Sign up / log in / log out
-- Member state gates the personalised tools
+Members:
+Creating an account unlocks My Garage, car search and parts/modification tools.
 
 Admin:
-- Existing content publishing/editing retained
-- Rich editor retained
-- Content SEO checker retained
-- Monthly feature retained
-- Analytics and site SEO audit retained
+Demo credentials are `admin` / `admin123`.
 
-Production recommendation:
-Move authentication and user/car/content data to Firebase Authentication + Firestore. Passwords must never be stored in localStorage in a real production deployment. Generate real article routes such as /guides/how-to-buy-a-pre-owned-car for indexable SEO pages.
+## Important
+
+The demo account/admin and data storage use browser storage so the package can be tested without a backend. Before production, replace this with Firebase Authentication + Firestore. Never store passwords in localStorage in a production application.
+
+For true SEO production deployment, host each article at its own URL and generate canonical URLs, sitemap.xml, robots.txt, Open Graph metadata and Article/NewsArticle structured data.
