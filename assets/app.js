@@ -44,7 +44,10 @@ function renderMagazine(filter){
  const all=posts().sort((a,b)=>new Date(b.date)-new Date(a.date));
  const list=filter==="All"?all:all.filter(p=>p.category===filter);
  const el=document.getElementById("magazineContent");if(!el)return;
- if(!list.length){el.innerHTML=`<div class="mag-empty">There are no ${filter.toLowerCase()} stories yet.</div>`;return}
+ if(!list.length){
+  el.innerHTML=`<div class="mag-empty"><strong>No ${filter.toLowerCase()} stories yet.</strong><br>New DriveWise content will appear here as it is published.</div>`;
+  return;
+}
  let html=`<div class="mag-lead">${magazineStory(list[0],true)}<div class="mag-side">${list.slice(1,3).map(p=>magazineStory(p)).join("")}</div></div>`;
  const rest=list.slice(3);
  if(rest.length) html+=`<section class="mag-section"><div class="mag-section-head"><h2>${filter==="All"?"Latest Stories":filter==="Buying Guide"?"Buying Guides":filter+"s"}</h2><span>${rest.length} more</span></div><div class="mag-grid">${rest.slice(0,3).map(p=>`<article class="mag-card"><span class="tag">${p.category}</span><h3>${p.title}</h3><p>${p.excerpt||""}</p><div class="mag-meta">${dateUK(p.date)}</div><a class="read" href="${route("article.html")}?id=${encodeURIComponent(p.id)}">Read story →</a></article>`).join("")}</div></section>`;
