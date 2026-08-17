@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DriveWise — practical guides for buying pre-owned cars and planning car modifications.">
+<meta name="description" content="DriveWise helps you buy smarter pre-owned cars, compare suitable models, understand specifications and plan sensible car modifications for your next project.">
 <title>DriveWise | Pre-Owned Cars & Mods</title>
 <style>
 :root{
@@ -64,6 +64,11 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <meta property="og:description" content="Guides for buying pre-owned cars and planning car modifications.">
 <meta property="og:type" content="website">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DriveWise","url":"https://example.com/","description":"Pre-owned car and modification guides."}</script>
+
+<style id="shortlist-styles">
+.shortlist-page{display:none;padding:55px 0 85px}.shortlist-head{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:26px}.shortlist-head h1{font-size:54px;margin:0;letter-spacing:-.06em}.shortlist-head p{color:#9da6b0;max-width:560px}.shortlist-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.car-card{background:#11151a;border:1px solid #2a323b;border-radius:22px;padding:25px;position:relative}.car-card:hover{border-color:#59692a;box-shadow:0 18px 45px rgba(0,0,0,.25)}.match{position:absolute;right:18px;top:18px;background:#182008;border:1px solid #3b4b18;color:#d7ff3f;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:900}.car-card h2{margin:0 80px 4px 0;font-size:26px}.car-card .variant{color:#9da6b0;font-size:13px;margin-bottom:18px}.spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:17px 0}.spec{background:#0b0e11;border:1px solid #242b32;border-radius:11px;padding:10px}.spec small{display:block;color:#7f8993;font-size:10px;text-transform:uppercase}.spec b{font-size:14px}.why{color:#c6ccd2;font-size:13px;margin:15px 0}.car-actions{display:flex;gap:9px;flex-wrap:wrap}.source{font-size:11px;color:#7f8993;margin-top:14px}.source a{color:#aebe69;text-decoration:underline}.at-btn{background:#d7ff3f;color:#080a0d;border:0;padding:11px 15px;border-radius:9px;font-weight:900;cursor:pointer}.parkers-btn{background:#252c33;color:#fff;border:1px solid #303841;padding:11px 15px;border-radius:9px;font-weight:800;cursor:pointer}.search-panel{background:linear-gradient(135deg,#171d23,#0d1013);border:1px solid #2a323b;border-radius:22px;padding:24px;margin:0 0 22px}.search-panel h3{margin:0 0 7px}.search-panel p{margin:0 0 15px;color:#9da6b0}.short-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}.short-form input{width:100%;background:#0b0e11;border:1px solid #303841;color:#fff;padding:12px;border-radius:9px}.short-form label{display:block;color:#9da6b0;font-size:11px;margin-bottom:5px}
+@media(max-width:800px){.shortlist-grid{grid-template-columns:1fr}.shortlist-head{display:block}.short-form{grid-template-columns:1fr}.spec-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body>
 <header>
@@ -77,17 +82,17 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
   <div class="container hero-inner">
     <div class="eyebrow">Buy smarter. Build better.</div>
     <h1>Your car.<br><span style="color:var(--accent)">Your way.</span></h1>
-    <p>Practical, no-nonsense advice for choosing a pre-owned car and planning the right modifications for your project.</p>
+    <p>Practical, no-nonsense advice for choosing a pre-owned car and planning the right modifications for your project.</p><div style="margin:30px auto 34px;max-width:760px"><img src="car-guide.svg" alt="DriveWise guide to pre-owned cars and car modifications" style="width:100%;display:block;border-radius:22px;border:1px solid var(--line)"></div>
     <div class="choice-grid">
       <div class="choice" onclick="openSection('used')">
         <div class="icon">🚗</div><h2>Find a Pre-Owned Car</h2>
         <p>Understand what to buy, what to avoid and which cars make sense for your budget, lifestyle and goals.</p>
-        <div class="arrow">Explore pre-owned cars →</div>
+        <div class="arrow">Explore pre-owned cars →</div><div style="margin-top:10px;font-size:12px;color:#7f8993">Guides · buying checklists · car shortlists</div>
       </div>
       <div class="choice" onclick="openSection('mods')">
         <div class="icon">🔧</div><h2>Explore Car Mods</h2>
         <p>Build a project with purpose. Discover upgrades by goal, budget and how much performance you actually need.</p>
-        <div class="arrow">Explore modifications →</div>
+        <div class="arrow">Explore modifications →</div><div style="margin-top:10px;font-size:12px;color:#7f8993">Mods · build planning · upgrade guides</div>
       </div>
     </div>
   </div>
@@ -110,7 +115,7 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
       </div>
       <button class="btn" style="margin-top:16px" onclick="recommend()">Build my shortlist</button>
       <div class="result" id="recommendation"></div>
-      <div class="notice">This is an educational shortlist tool, not a vehicle valuation or buying guarantee.</div>
+      <div class="notice">This is an educational shortlist tool, not a vehicle valuation or buying guarantee.</div><div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:15px"><a href="#guides" style="color:var(--accent);font-weight:800">Used car buying guides →</a><a href="#" onclick="openSection('mods');return false;" style="color:var(--accent);font-weight:800">Explore car mods →</a></div>
     </div>
   </div>
 </div>
@@ -120,11 +125,11 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <div class="container">
 <div class="section-head"><div><div class="eyebrow">Buying guides</div><h2>Start with the right question.</h2></div><p>Build content around the decisions real buyers make before handing over their money.</p></div>
 <div class="cards">
-<div class="card"><span class="tag">CHECKLIST</span><h3>How to inspect a used car</h3><p>Paint, tyres, brakes, warning lights, cold starts, leaks, history and the test drive.</p></div>
+<div class="card"><span class="tag">CHECKLIST</span><h3>How to inspect a used car</h3><p>Paint, tyres, brakes, warning lights, cold starts, leaks, history and the test drive.</p><a href="#guides" style="color:var(--accent);font-size:13px;font-weight:800">More buying guides →</a></div>
 <div class="card"><span class="tag">MONEY</span><h3>What can I afford?</h3><p>Look beyond the purchase price: insurance, tax, servicing, tyres, fuel and unexpected repairs.</p></div>
 <div class="card"><span class="tag">RESEARCH</span><h3>Which engine should I choose?</h3><p>Compare petrol, diesel, hybrid and electric powertrains based on how you actually drive.</p></div>
 <div class="card"><span class="tag">RED FLAGS</span><h3>Used car warning signs</h3><p>Spot suspicious history, mismatched panels, neglected maintenance and rushed sellers.</p></div>
-<div class="card"><span class="tag">PROJECT</span><h3>Best cars to modify</h3><p>Look for strong aftermarket support, sensible running costs, good chassis balance and available parts.</p></div>
+<div class="card"><span class="tag">PROJECT</span><h3>Best cars to modify</h3><p>Look for strong aftermarket support, sensible running costs, good chassis balance and available parts.</p><a href="#" onclick="openSection('mods');return false;" style="color:var(--accent);font-size:13px;font-weight:800">Explore modification guides →</a></div>
 <div class="card"><span class="tag">OWNERSHIP</span><h3>First 30 days of ownership</h3><p>A sensible baseline service, inspection and maintenance plan before adding modifications.</p></div>
 </div>
 </div>
@@ -175,10 +180,32 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 </main>
 
 
+
+<section id="shortlistPage" class="shortlist-page">
+<div class="container">
+  <div class="back" onclick="openSection('used')">← Back to your requirements</div>
+  <div class="shortlist-head">
+    <div><div class="eyebrow">Your shortlist</div><h2 style="font-size:54px;margin:0;letter-spacing:-.06em">5 cars worth a closer look.</h2></div>
+    <p id="shortlistSummary">Based on your answers, we have selected five starting points. Open the spec view for more detail, then search live stock on Auto Trader when you find a car you like.</p>
+  </div>
+  <div class="search-panel">
+    <h3>Ready to find one for sale?</h3>
+    <p>Enter your postcode and choose a car below. We’ll take you directly to an Auto Trader used-car search for that make and model. Auto Trader currently provides postcode, make/model and further filtering options on its used-car search. cite-placeholder</p>
+    <div class="short-form">
+      <div><label>Postcode</label><input id="shortPostcode" placeholder="e.g. WS1 1AA"></div>
+      <div><label>Optional maximum budget</label><input id="shortMax" type="number" placeholder="e.g. 8000"></div>
+      <button class="btn" onclick="searchSelectedAutoTrader()">Search selected car</button>
+    </div>
+  </div>
+  <div id="shortlistGrid" class="shortlist-grid"></div>
+  <div class="notice" style="margin-top:18px">Specifications are presented against a specific Parkers reference variant where available. Exact figures can differ by model year, engine, gearbox and trim, so always verify the exact vehicle you are considering on Parkers and against its registration/VIN before buying.</div>
+</div>
+</section>
+
 <section id="adminLogin" class="admin-login" style="display:none">
   <div class="login-box">
     <div class="eyebrow">Private area</div>
-    <h1>Admin login</h1>
+    <h2 style="font-size:38px;margin:10px 0">Admin login</h2>
     <p>Manage DriveWise, review SEO health and see how visitors are using the site.</p>
     <div class="field"><label>Username</label><input id="adminUser" autocomplete="username" value=""></div>
     <div class="field" style="margin-top:14px"><label>Password</label><input id="adminPass" type="password" autocomplete="current-password"></div>
@@ -191,7 +218,7 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <section id="adminShell" class="admin-shell">
 <div class="container">
   <div class="admin-top">
-    <div><div class="eyebrow">Admin dashboard</div><h1>DriveWise control centre</h1><div class="live">Analytics tracking is active on this browser</div></div>
+    <div><div class="eyebrow">Admin dashboard</div><h2 style="font-size:48px;margin:0;letter-spacing:-.06em">DriveWise control centre</h2><div class="live">Analytics tracking is active on this browser</div></div>
     <div class="admin-actions"><button class="btn" onclick="runSEOAudit()">Run SEO audit</button><button class="btn" onclick="exportAnalytics()">Export analytics</button><button class="btn" style="background:#252c33;color:#fff" onclick="adminLogout()">Log out</button></div>
   </div>
 
@@ -241,22 +268,9 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <footer><div class="container">© 2026 DriveWise. Built for people who care what they drive. <span style="float:right">Information only — always check UK roadworthiness, insurance and modification requirements before making changes.</span></div></footer>
 
 <script>
-function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';window.scrollTo(0,0)}
-function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';window.scrollTo(0,0)}
-function recommend(){
- const budget=Number(document.getElementById('budget').value)||0,use=document.getElementById('use').value,priority=document.getElementById('priority').value,body=document.getElementById('body').value;
- let picks=[];
- if(use==='First car') picks=['Ford Fiesta','Toyota Yaris','Honda Jazz'];
- else if(use==='Family') picks=['Skoda Octavia','Toyota Corolla','Kia Ceed'];
- else if(use==='Fun / weekend') picks=['Mazda MX-5','Toyota GT86','Ford Fiesta ST'];
- else if(use==='Long-distance') picks=['Skoda Octavia','BMW 3 Series','Toyota Corolla'];
- else picks=['Ford Focus','Mazda 3','Honda Civic'];
- if(priority==='Performance') picks=picks.map((x,i)=>i===0?x+' ST / sport trim':x);
- if(priority==='Modification potential') picks=['Mazda MX-5','Ford Fiesta ST','Volkswagen Golf GTI'];
- if(priority==='Fuel economy') picks=['Toyota Yaris Hybrid','Honda Jazz','Toyota Corolla Hybrid'];
- const budgetText=budget?`With a £${budget.toLocaleString('en-GB')} budget, keep a reserve for servicing, tyres, insurance and repairs.`:'Set a budget first, then compare cars within it.';
- const el=document.getElementById('recommendation');el.style.display='block';el.innerHTML=`<strong>Your starting shortlist</strong><p>${picks.join(' · ')}</p><span>${budgetText} Your next step should be checking the exact engine, service history, MOT history and insurance costs for any individual car.</span>`;
-}
+function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+
 function modPlan(){
  const goal=document.getElementById('modgoal').value,budget=Number(document.getElementById('modbudget').value)||0,road=document.getElementById('roaduse').value;
  let plan={Looks:['Wheels & tyres','Springs / subtle suspension','Exterior styling','Detailing'],Handling:['Quality tyres','Brake refresh','Suspension / geometry','Alignment'],Performance:['Baseline service','Tyres + brakes','Cooling / supporting mods','ECU tuning last'],Sound:['Exhaust research','Intake / induction','Sound deadening where needed','Audio if desired'],Comfort:['Tyres','Dampers / suspension refresh','Seats / ergonomics','Audio']};
@@ -264,6 +278,75 @@ function modPlan(){
  const el=document.getElementById('modresult');el.style.display='block';el.innerHTML=`<strong>${goal} build order</strong><p>${items.map((x,i)=>`${i+1}. ${x}`).join('<br>')}</p><span>${budget?`For a £${budget.toLocaleString('en-GB')} budget, prioritise the first two stages before spending on cosmetic extras.`:'Set your budget so the build can be prioritised.'} For a daily road car, prioritise reliability, tyres and braking before chasing power.</span>`;
 }
 showHome();
+
+
+// ---------------- DriveWise 5-car shortlist ----------------
+let selectedShortCar=null;
+const carDatabase=[
+ {make:'Ford',model:'Fiesta',variant:'1.25 Zetec 5d (1999–2002 reference)',match:['First car','Daily driving','Fuel economy'],power:'73 bhp',zero:'12.7 sec',fuel:'40 mpg',engine:'1,242cc',gear:'5-speed manual',drive:'FWD',why:'Affordable, compact and easy to live with. A strong starting point for a first-car or budget build.',parkers:'https://www.parkers.co.uk/ford/fiesta/hatchback-1999/125-zetec-5d/specs/',at:'https://www.autotrader.co.uk/cars/used/ford/fiesta'},
+ {make:'Mazda',model:'MX-5',variant:'MX-5 (2015 onwards) model range',match:['Fun / weekend','Modification potential'],power:'90–181 bhp',zero:'6.3–10.6 sec',fuel:'37.2–45.6 mpg',engine:'Varies by version',gear:'Manual / auto',drive:'RWD',why:'Lightweight rear-wheel-drive sports car with a huge enthusiast following and strong modification potential.',parkers:'https://www.parkers.co.uk/mazda/mx-5/',at:'https://www.autotrader.co.uk/cars/used/mazda/mx-5'},
+ {make:'Skoda',model:'Octavia',variant:'1.0 TSI 115PS DSG Estate reference',match:['Family','Long-distance','Comfort'],power:'113 bhp',zero:'10.0 sec',fuel:'Model dependent',engine:'999cc',gear:'DSG automatic',drive:'FWD',why:'Practical, spacious and understated. Particularly attractive when boot space and everyday usability matter.',parkers:'https://www.parkers.co.uk/skoda/octavia/estate-2013/s-10-tsi-115ps-dsg-auto-%280317-on%29-5d/specs/',at:'https://www.autotrader.co.uk/cars/used/skoda/octavia'},
+ {make:'Volkswagen',model:'Golf',variant:'Golf range — reference specs vary by generation',match:['Daily driving','Comfort','Modification potential'],power:'54–328 bhp',zero:'4.5–18.0 sec',fuel:'32.5–70.6 mpg',engine:'Multiple engines',gear:'Manual / DSG',drive:'FWD / AWD',why:'Huge choice of engines and trims, strong parts availability and an enormous used market.',parkers:'https://www.parkers.co.uk/volkswagen/golf/',at:'https://www.autotrader.co.uk/cars/used/volkswagen/golf'},
+ {make:'Honda',model:'Civic',variant:'1.6 i-VTEC reference (2000–2005)',match:['Reliability','Daily driving','Modification potential'],power:'108 bhp',zero:'10.1 sec',fuel:'Model dependent',engine:'1,590cc',gear:'Manual / auto',drive:'FWD',why:'A practical hatchback with a strong enthusiast reputation. The exact engine and generation matter, so compare variants carefully.',parkers:'https://www.parkers.co.uk/honda/civic/hatchback-2000/16i-vtec-inspire-s-5d/specs/',at:'https://www.autotrader.co.uk/cars/used/honda/civic'}
+];
+function openShortlist(){
+ document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='block';window.scrollTo(0,0);trackPage();
+}
+function buildFiveCars(){
+ const budget=Number(document.getElementById('budget').value)||0;
+ const use=document.getElementById('use').value;
+ const priority=document.getElementById('priority').value;
+ const body=document.getElementById('body').value;
+ let cars=[...carDatabase];
+ let scored=cars.map(c=>{
+   let score=72;
+   if(c.match.includes(use))score+=12;
+   if(c.match.includes(priority))score+=10;
+   if(priority==='Modification potential' && ['Mazda','Volkswagen','Honda'].includes(c.make))score+=5;
+   if(body==='Hatchback' && ['Ford','Volkswagen','Honda'].includes(c.make))score+=3;
+   if(use==='Family' && c.model==='Octavia')score+=6;
+   if(use==='Fun / weekend' && c.model==='MX-5')score+=8;
+   return {...c,score:Math.min(98,score)};
+ }).sort((a,b)=>b.score-a.score);
+ const summary=`Your shortlist is based on ${use.toLowerCase()}, prioritising ${priority.toLowerCase()}${budget?` and a £${budget.toLocaleString('en-GB')} budget`:''}${body!=='Any'?` with a ${body.toLowerCase()} preference`:''}.`;
+ document.getElementById('shortlistSummary').textContent=summary+' Open a car to review its reference specifications, then use Auto Trader to find live listings.';
+ document.getElementById('shortlistGrid').innerHTML=scored.slice(0,5).map((c,i)=>`
+ <article class="car-card">
+   <div class="match">${c.score}% MATCH</div>
+   <h2>${i+1}. ${c.make} ${c.model}</h2>
+   <div class="variant">${c.variant}</div>
+   <div class="spec-grid">
+     <div class="spec"><small>Power</small><b>${c.power}</b></div>
+     <div class="spec"><small>0–60</small><b>${c.zero}</b></div>
+     <div class="spec"><small>Economy</small><b>${c.fuel}</b></div>
+     <div class="spec"><small>Engine</small><b>${c.engine}</b></div>
+   </div>
+   <div class="why">${c.why}</div>
+   <div class="car-actions">
+     <button class="parkers-btn" onclick="openParkers('${encodeURIComponent(c.parkers)}')">View Parkers specs</button>
+     <button class="at-btn" onclick="searchAutoTrader('${c.make}','${c.model}')">Find on Auto Trader →</button>
+   </div>
+   <div class="source">Reference: <a href="${c.parkers}" target="_blank" rel="noopener">Parkers specification data</a> · Exact figures depend on year/trim.</div>
+ </article>`).join('');
+ selectedShortCar=scored[0];
+}
+function recommend(){
+ buildFiveCars();
+ openShortlist();
+}
+function openParkers(url){window.open(decodeURIComponent(url),'_blank','noopener')}
+function searchAutoTrader(make,model){
+ selectedShortCar=carDatabase.find(c=>c.make===make&&c.model===model)||selectedShortCar;
+ const postcode=document.getElementById('shortPostcode')?.value.trim();
+ let url=`https://www.autotrader.co.uk/cars/used/${encodeURIComponent(make.toLowerCase())}/${encodeURIComponent(model.toLowerCase())}`;
+ // Keep postcode in the hand-off where supported; Auto Trader provides postcode filtering on its search pages.
+ if(postcode) url += `?postcode=${encodeURIComponent(postcode)}`;
+ window.open(url,'_blank','noopener');
+}
+function searchSelectedAutoTrader(){
+ if(!selectedShortCar){alert('Choose a car from your shortlist first.');return}
+ searchAutoTrader(selectedShortCar.make,selectedShortCar.model);
+}
 
 // ---------------- DriveWise analytics + admin ----------------
 const DW_KEY='drivewiseAnalyticsV1';
@@ -275,6 +358,7 @@ function saveAnalytics(a){localStorage.setItem(DW_KEY,JSON.stringify(a))}
 function currentPage(){
   if(document.getElementById('used').style.display==='block') return 'Pre-Owned Cars';
   if(document.getElementById('mods').style.display==='block') return 'Car Mods';
+  if(document.getElementById('shortlistPage').style.display==='block') return 'Car Shortlist';
   if(document.getElementById('adminShell').style.display==='block') return 'Admin Dashboard';
   return 'Homepage';
 }
@@ -302,27 +386,26 @@ function renderAnalytics(){
   document.getElementById('visitorBreakdown').innerHTML=recent.length?recent.map(e=>`<div class="audit-item"><span>●</span><div><b>${e.page}</b><div class="audit-meta">${new Date(e.time).toLocaleString('en-GB')}</div></div><span class="status-good">view</span></div>`).join(''):'<div class="audit-meta">No recent activity.</div>';
 }
 function auditChecks(){
- const d=document; const checks=[];
- const title=d.title||''; const desc=d.querySelector('meta[name="description"]')?.content||'';
- const h1=d.querySelectorAll('h1').length; const h2=d.querySelectorAll('h2').length;
- const text=(d.body?.innerText||'').replace(/\s+/g,' ').trim();
- const internal=[...d.querySelectorAll('a[href]')].filter(a=>a.getAttribute('href')?.startsWith('#')||a.getAttribute('href')?.startsWith('/'));
+ const d=document, checks=[];
+ const title=d.title||'', desc=d.querySelector('meta[name="description"]')?.content||'';
+ const publicRoot=document.getElementById('home');
+ const h1=publicRoot?publicRoot.querySelectorAll('h1').length:0;
+ const h2=document.querySelectorAll('#home h2,#used h2,#mods h2,#shortlistPage h2').length;
+ const text=[document.getElementById('home'),document.getElementById('used'),document.getElementById('mods'),document.getElementById('shortlistPage')].filter(Boolean).map(x=>x.innerText||'').join(' ').replace(/\\s+/g,' ').trim();
+ const internal=[...d.querySelectorAll('a[href]')].filter(a=>{const href=a.getAttribute('href')||'';return href.startsWith('#')||href.startsWith('/')||href.startsWith('javascript:')||href.includes('openSection');});
  const images=[...d.images], altMissing=images.filter(i=>!i.alt.trim()).length;
- const canon=d.querySelector('link[rel="canonical"]');
- const viewport=d.querySelector('meta[name="viewport"]');
- const og=d.querySelector('meta[property="og:title"]');
- const schema=d.querySelector('script[type="application/ld+json"]');
+ const canon=d.querySelector('link[rel="canonical"]'), viewport=d.querySelector('meta[name="viewport"]'), og=d.querySelector('meta[property="og:title"]'), schema=d.querySelector('script[type="application/ld+json"]');
  checks.push({name:'Title tag',detail:title.length>=30&&title.length<=65?`Good length (${title.length} characters).`:`Needs work: ${title.length} characters. Aim for roughly 30–65.`,ok:title.length>=30&&title.length<=65});
  checks.push({name:'Meta description',detail:desc.length>=120&&desc.length<=170?`Good length (${desc.length} characters).`:`Needs work: ${desc.length} characters. Aim for roughly 120–170.`,ok:desc.length>=120&&desc.length<=170});
- checks.push({name:'Single H1',detail:h1===1?`One H1 found.`:`Found ${h1} H1 elements. Use one clear primary H1 per page.`,ok:h1===1});
- checks.push({name:'Heading structure',detail:h2>=2?`${h2} H2 headings found.`:`Only ${h2} H2 headings found. Add useful section headings where appropriate.`,ok:h2>=2});
- checks.push({name:'Content depth',detail:text.length>1800?`${text.length.toLocaleString('en-GB')} visible characters detected.`:`Only ${text.length.toLocaleString('en-GB')} visible characters detected. Build deeper, genuinely useful content.`,ok:text.length>1800});
- checks.push({name:'Image alt text',detail:images.length===0?'No images found on this page.':altMissing===0?'All images have alt text.':`${altMissing} of ${images.length} images are missing alt text.`,ok:images.length>0&&altMissing===0});
+ checks.push({name:'Single H1',detail:h1===1?'One primary H1 found on the public homepage.':`Found ${h1} primary H1 elements on the public homepage.`,ok:h1===1});
+ checks.push({name:'Heading structure',detail:h2>=5?`${h2} useful H2 headings found across the public sections.`:`Only ${h2} H2 headings found. Add useful section headings where appropriate.`,ok:h2>=5});
+ checks.push({name:'Content depth',detail:text.length>3500?`${text.length.toLocaleString('en-GB')} visible characters detected across the public sections.`:`Only ${text.length.toLocaleString('en-GB')} visible characters detected. Build deeper, genuinely useful content.`,ok:text.length>3500});
+ checks.push({name:'Image alt text',detail:images.length===0?'No images found on the public site.':altMissing===0?`All ${images.length} images have descriptive alt text.`:`${altMissing} of ${images.length} images are missing alt text.`,ok:images.length>0&&altMissing===0});
  checks.push({name:'Canonical URL',detail:canon?'Canonical tag found.':'No canonical tag found. Add a self-referencing canonical on production pages.',ok:!!canon});
  checks.push({name:'Open Graph',detail:og?'og:title found.':'Open Graph tags are missing. Add social sharing metadata.',ok:!!og});
  checks.push({name:'Structured data',detail:schema?'JSON-LD structured data found.':'No JSON-LD structured data found. Add relevant WebSite/Breadcrumb/Article/Product schema where appropriate.',ok:!!schema});
  checks.push({name:'Mobile viewport',detail:viewport?'Viewport configured.':'Viewport meta tag missing.',ok:!!viewport});
- checks.push({name:'Internal linking',detail:internal.length>=6?`${internal.length} internal/navigation links detected.`:`Only ${internal.length} internal/navigation links detected. Add contextual links between related content.`,ok:internal.length>=6});
+ checks.push({name:'Internal linking',detail:internal.length>=10?`${internal.length} internal/navigation links detected.`:`Only ${internal.length} internal/navigation links detected. Add contextual links between related content.`,ok:internal.length>=10});
  return checks;
 }
 function runSEOAudit(){
@@ -333,7 +416,7 @@ function runSEOAudit(){
  const failed=checks.filter(x=>!x.ok);
  document.getElementById('seoPriorities').innerHTML=failed.length?failed.slice(0,6).map(c=>`<div class="audit-item"><span class="status-bad">!</span><div><b>${c.name}</b><div class="audit-meta">${c.detail}</div></div><span class="status-bad">Priority</span></div>`).join(''):'<div class="audit-item"><span class="status-good">✓</span><div><b>No major issues detected</b><div class="audit-meta">Continue improving content depth, internal links and search intent coverage.</div></div></div>';
 }
-function showAdminLogin(){document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('adminLogin').style.display='grid';window.scrollTo(0,0)}
+function showAdminLogin(){document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('adminLogin').style.display='grid';window.scrollTo(0,0)}
 function adminLogin(){
  if(document.getElementById('adminUser').value==='admin'&&document.getElementById('adminPass').value==='admin123'){
    sessionStorage.setItem('dwAdmin','1');document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';renderAnalytics();runSEOAudit();window.scrollTo(0,0);

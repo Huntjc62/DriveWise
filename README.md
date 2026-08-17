@@ -1,13 +1,12 @@
-# DriveWise v2
+# DriveWise v4
 
-Includes:
-- Public pre-owned car and modification experience
-- Admin login: `admin` / `admin123`
-- Admin dashboard with browser-based visitor/page-view/session tracking
-- Most visited pages
-- Recent activity
-- Custom SEO audit checking title, meta description, H1/H2 structure, content depth, image alt text, canonical, Open Graph, JSON-LD, viewport and internal linking
-- SEO score and prioritised fixes
-- Analytics JSON export
+SEO improvements based on the admin audit screenshot:
+- Expanded meta description to a search-friendly length
+- Added a branded car image with descriptive alt text
+- Reduced the public document to one primary homepage H1
+- Added contextual internal links between buying guides, pre-owned cars and mods
+- Improved the custom SEO audit so it does not count hidden admin/SPA headings as public H1s
+- Increased the internal-link threshold and checks actual navigation/contextual links
+- Retained the five-car shortlist, Parkers reference links, Auto Trader hand-off and admin analytics
 
-Important: the included analytics are a front-end prototype and only record visits in the browser's localStorage. For real multi-user analytics, connect the dashboard to a server/database or analytics provider.
+The audit is now designed to tell you about genuine issues rather than flagging the hidden admin dashboard as part of the public page.
