@@ -92,12 +92,38 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 @media(max-width:1000px){.garage-form{grid-template-columns:repeat(2,1fr)}.compare-grid{grid-template-columns:1fr}}
 @media(max-width:520px){.garage-form{grid-template-columns:1fr}.car-profile{display:block}.car-profile .tag{margin-top:12px}}
 </style>
+
+<style id="mod-library-page-styles">
+.mod-library-page{display:none;padding:55px 0 90px}
+.mod-library-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:end;margin-bottom:34px}
+.mod-library-hero h1{font-size:clamp(48px,6vw,76px);margin:10px 0 15px;line-height:.94;letter-spacing:-.065em}
+.mod-library-hero p{color:#9da6b0;max-width:610px;font-size:16px}
+.mod-library-stat{background:linear-gradient(145deg,#171d23,#0d1013);border:1px solid #2a323b;border-radius:22px;padding:24px}
+.mod-library-stat .big{font-size:48px;font-weight:900;color:#d7ff3f;line-height:1}
+.mod-library-stat span{display:block;color:#9da6b0;margin-top:7px;font-size:13px}
+.mod-library-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.mod-library-card{background:#11151a;border:1px solid #2a323b;border-radius:18px;padding:22px;min-height:160px;display:flex;flex-direction:column;justify-content:space-between;transition:.2s;cursor:pointer}
+.mod-library-card:hover{transform:translateY(-4px);border-color:#566529;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.mod-library-card .mod-icon{font-size:27px;margin-bottom:18px}
+.mod-library-card h2{font-size:18px;margin:0 0 7px}
+.mod-library-card p{color:#9da6b0;font-size:13px;margin:0}
+.mod-library-card .explore{color:#d7ff3f;font-size:12px;font-weight:900;margin-top:17px}
+.mod-library-detail{display:none;margin-top:28px;background:linear-gradient(145deg,#171d23,#0d1013);border:1px solid #2a323b;border-radius:22px;padding:28px}
+.mod-library-detail h2{font-size:34px;margin:0 0 8px}.mod-library-detail>p{color:#9da6b0;max-width:750px}
+.mod-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.mod-detail-item{background:#0b0e11;border:1px solid #252c33;border-radius:13px;padding:15px}
+.mod-detail-item b{display:block;margin-bottom:5px}.mod-detail-item span{font-size:12px;color:#9da6b0}
+.mod-library-cta{margin-top:28px;padding:24px;border:1px solid #39471a;background:#11170a;border-radius:18px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.mod-library-cta p{margin:5px 0 0;color:#9da6b0;font-size:13px}
+@media(max-width:900px){.mod-library-hero{grid-template-columns:1fr}.mod-library-grid{grid-template-columns:repeat(2,1fr)}.mod-detail-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.mod-library-grid,.mod-detail-grid{grid-template-columns:1fr}.mod-library-cta{display:block}.mod-library-cta .btn{margin-top:14px}}
+</style>
 </head>
 <body>
 <header>
   <div class="container nav">
     <a class="logo" href="#" onclick="showHome();return false;">DRIVE<span>WISE</span></a>
-    <nav class="navlinks"><a href="#" onclick="openSection('used');return false;">Pre-Owned</a><a href="#" onclick="openSection('mods');return false;">Mods</a><a href="#guides">Guides</a><a href="#" onclick="showAdminLogin();return false;">Admin</a></nav>
+    <nav class="navlinks"><a href="#" onclick="openSection('used');return false;">Pre-Owned</a><a href="#" onclick="openSection('mods');return false;">Mods</a><a href="#" onclick="showModLibrary();return false;">Mod Library</a><a href="#guides">Guides</a><a href="#" onclick="showAdminLogin();return false;">Admin</a></nav>
   </div>
 </header>
 
@@ -223,6 +249,47 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 
 
 
+
+<section id="modLibraryPage" class="mod-library-page">
+<div class="container">
+  <div class="back" onclick="showHome()">← Back to home</div>
+
+  <div class="mod-library-hero">
+    <div>
+      <div class="eyebrow">Mod Library</div>
+      <h1>What are you actually changing?</h1>
+      <p>Understand what each modification does before you spend money. Explore the main areas of a car build, what each part changes and what you should consider before fitting it.</p>
+    </div>
+    <div class="mod-library-stat">
+      <div class="big">12</div>
+      <span>core modification categories to explore</span>
+    </div>
+  </div>
+
+  <div class="mod-library-grid">
+    <article class="mod-library-card" data-modlib="wheels"><div><div class="mod-icon">🛞</div><h2>Wheels & tyres</h2><p>Grip, stance, ride and appearance.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="suspension"><div><div class="mod-icon">🔩</div><h2>Suspension</h2><p>Springs, dampers, coilovers and geometry.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="brakes"><div><div class="mod-icon">🛑</div><h2>Brakes</h2><p>Pads, discs, fluid and cooling.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="exhaust"><div><div class="mod-icon">💨</div><h2>Exhaust</h2><p>Sound, flow and appearance.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="intake"><div><div class="mod-icon">🌬️</div><h2>Intake</h2><p>Airflow, sound and supporting changes.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="ecu"><div><div class="mod-icon">⚡</div><h2>ECU tuning</h2><p>Software changes and power delivery.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="bodywork"><div><div class="mod-icon">🎨</div><h2>Bodywork</h2><p>Splitters, spoilers, skirts and styling.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="interior"><div><div class="mod-icon">🪑</div><h2>Interior</h2><p>Seats, steering wheels, gauges and trim.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="lighting"><div><div class="mod-icon">💡</div><h2>Lighting</h2><p>Appearance and visibility upgrades.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="audio"><div><div class="mod-icon">🔊</div><h2>Audio</h2><p>Head units, speakers and subwoofers.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="cooling"><div><div class="mod-icon">❄️</div><h2>Cooling</h2><p>Radiators, intercoolers and oil cooling.</p></div><div class="explore">Explore category →</div></article>
+    <article class="mod-library-card" data-modlib="detailing"><div><div class="mod-icon">✨</div><h2>Detailing</h2><p>Paint correction, coatings and protection.</p></div><div class="explore">Explore category →</div></article>
+  </div>
+
+  <div id="modLibraryDetail" class="mod-library-detail"></div>
+
+  <div class="mod-library-cta">
+    <div><b>Know what you want to change?</b><p>Select your car in My Garage and compare suitable parts across three retailers.</p></div>
+    <button class="btn" onclick="openSection('mods')">Open My Garage →</button>
+  </div>
+</div>
+</section>
+
 <section id="shortlistPage" class="shortlist-page">
 <div class="container">
   <div class="back" onclick="openSection('used')">← Back to your requirements</div>
@@ -310,8 +377,8 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <footer><div class="container">© 2026 DriveWise. Built for people who care what they drive. <span style="float:right">Information only — always check UK roadworthiness, insurance and modification requirements before making changes.</span></div></footer>
 
 <script>
-function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
-function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
 
 function modPlan(){
  const goal=document.getElementById('modgoal').value,budget=Number(document.getElementById('modbudget').value)||0,road=document.getElementById('roaduse').value;
@@ -321,6 +388,42 @@ function modPlan(){
 }
 showHome();
 
+
+
+// ---------------- DriveWise standalone Mod Library ----------------
+const modLibraryData={
+ wheels:{title:'Wheels & tyres',intro:'The contact point between your car and the road. Wheel and tyre choices can change grip, steering feel, ride comfort, stance and appearance.',items:[['Tyre compound','Changes available grip and wet-weather performance.'],['Wheel size','Larger wheels can alter ride and steering response.'],['Offset & width','Affects clearance, stance and geometry.'],['Load rating','Must be suitable for the vehicle.'],['Alignment','Important after changing wheel/tyre or suspension setup.'],['Legal checks','Confirm sizes, condition and roadworthiness requirements.']]},
+ suspension:{title:'Suspension',intro:'Suspension changes how the car responds to bumps, corners and weight transfer. Good setups balance handling with usable road comfort.',items:[['Lowering springs','Reduce ride height while retaining a conventional damper setup.'],['Coilovers','Adjustable suspension that can offer height and sometimes damping control.'],['Dampers','Control suspension movement and can transform worn or mismatched setups.'],['Bushes','Can sharpen response, but harder bushes may add noise and vibration.'],['Geometry','Alignment settings can change tyre wear and handling balance.'],['Daily-driver tip','Do not chase maximum stiffness if the car is mainly used on public roads.']]},
+ brakes:{title:'Brakes',intro:'More power is only useful if the car can slow consistently. Brakes should be upgraded as a complete system, not simply by fitting the biggest-looking discs.',items:[['Pads','A key influence on bite, heat tolerance and pedal feel.'],['Discs','Quality discs need to suit the pad and intended use.'],['Brake fluid','Higher-temperature fluid can help with repeated hard braking.'],['Braided lines','Can improve pedal consistency when correctly specified.'],['Cooling','Important for sustained hard use or track driving.'],['Balance','Front/rear balance and ABS compatibility matter.']]},
+ exhaust:{title:'Exhaust',intro:'Exhaust modifications can alter sound, appearance and, depending on the system and engine, gas flow and performance.',items:[['Back box','A relatively simple route to changing exhaust tone.'],['Cat-back','Changes the exhaust system downstream of the catalytic converter.'],['Downpipe','A more significant change that can affect emissions equipment.'],['Valve systems','Can provide different sound levels where legally and technically appropriate.'],['Noise','Avoid setups that make the car unpleasant or non-compliant for road use.'],['Supporting mods','Power changes may require fuelling, cooling or software changes.']]},
+ intake:{title:'Intake',intro:'Air intake changes focus on the route air takes into the engine. Gains depend heavily on the engine and the rest of the setup.',items:[['Panel filter','A simple replacement within the factory airbox.'],['Cold-air intake','Attempts to draw cooler outside air into the system.'],['Induction kit','Can change intake sound and airflow characteristics.'],['Heat shielding','Important where intake components sit near hot engine areas.'],['MAF/MAP compatibility','Sensor readings must remain accurate.'],['Realistic expectations','Sound changes can be more noticeable than power gains.']]},
+ ecu:{title:'ECU tuning',intro:'Software tuning changes how the engine is controlled. It can alter power delivery, throttle response and sometimes economy.',items:[['Stage 1','Usually software-focused and designed around a standard hardware setup.'],['Stage 2','Often assumes supporting hardware changes.'],['Torque limits','Transmission and drivetrain limits must be considered.'],['Engine health','A tune should not be used to hide an unhealthy engine.'],['Fuel quality','The calibration must match the fuel and engine requirements.'],['Insurance','Declare modifications to your insurer where required.']]},
+ bodywork:{title:'Bodywork',intro:'Body modifications can completely change a car visually, from subtle OEM+ changes to a full project build.',items:[['Splitters','Front-end styling with potential aerodynamic effects.'],['Spoilers','Can be primarily cosmetic or functional depending on design.'],['Side skirts','Visual extension of the lower body line.'],['Wide arches','Increase visual width and may require wheel/tyre changes.'],['Wrapping','A reversible styling route compared with paint.'],['Fitment','Check mounting, clearance and material quality.']]},
+ interior:{title:'Interior',intro:'Interior upgrades can improve comfort, driving position, usability and the overall character of a project car.',items:[['Seats','Support and driving position are key considerations.'],['Steering wheel','Changes feel and appearance; safety systems must be respected.'],['Gauges','Useful for monitoring temperatures, pressure and other parameters.'],['Trim','OEM+ changes can refresh an interior without making it impractical.'],['Harnesses','Require careful consideration of seat, mounting and safety-system compatibility.'],['Daily use','Prioritise comfort and visibility if the car is used every day.']]},
+ lighting:{title:'Lighting',intro:'Lighting upgrades can change appearance and improve visibility, but road-use rules and beam pattern matter.',items:[['Headlights','Use correctly approved and compatible units.'],['Bulbs','Check wattage, fitting and beam performance.'],['LED conversions','Compatibility and legality vary by vehicle and lamp.'],['Interior lighting','A simple cosmetic upgrade with minimal mechanical impact.'],['Alignment','Correct beam alignment is essential.'],['Road use','Always verify current UK requirements before fitting lighting changes.']]},
+ audio:{title:'Audio',intro:'Audio upgrades range from simple speaker replacements to full systems with amplifiers and subwoofers.',items:[['Head unit','Can add modern connectivity and better source control.'],['Speakers','Quality speakers can make a large difference without huge power requirements.'],['Amplifier','Adds cleaner power when matched correctly.'],['Subwoofer','Adds low-frequency response and requires appropriate enclosure/power.'],['Sound deadening','Can reduce road noise and improve perceived audio quality.'],['Electrical load','Ensure the charging system can support the installation.']]},
+ cooling:{title:'Cooling',intro:'Cooling becomes increasingly important as engine output and sustained load increase.',items:[['Radiator','Increased capacity can help manage engine coolant temperatures.'],['Intercooler','Useful on turbocharged engines where charge-air temperature matters.'],['Oil cooler','Can help control oil temperature under sustained load.'],['Thermostat','Must be correctly matched to the engine and cooling strategy.'],['Ducting','Directs airflow where it is needed rather than simply adding larger components.'],['Monitoring','Use temperature data to establish whether an upgrade is actually needed.']]},
+ detailing:{title:'Detailing',intro:'Detailing is about restoring, protecting and maintaining the car rather than changing its mechanical character.',items:[['Paint correction','Removes or reduces defects from the paint surface when appropriate.'],['Ceramic coating','Adds a protective layer and can make maintenance easier.'],['Machine polishing','Requires careful technique to avoid paint damage.'],['Interior cleaning','Can dramatically improve an older car without modifying it.'],['Paint protection film','Adds a physical barrier in high-impact areas.'],['Maintenance','Protection works best when the car is regularly washed correctly.']]}
+};
+function showModLibrary(){
+ document.getElementById('home').style.display='none';
+ document.getElementById('used').style.display='none';
+ document.getElementById('mods').style.display='none';
+ document.getElementById('shortlistPage').style.display='none';
+ document.getElementById('adminLogin').style.display='none';
+ document.getElementById('adminShell').style.display='none';
+ document.getElementById('modLibraryPage').style.display='block';
+ window.scrollTo(0,0);
+ trackPage();
+}
+function renderModLibraryDetail(key){
+ const d=modLibraryData[key]; if(!d)return;
+ const el=document.getElementById('modLibraryDetail');
+ el.style.display='block';
+ el.innerHTML=`<div class="eyebrow">Category guide</div><h2>${d.title}</h2><p>${d.intro}</p><div class="mod-detail-grid">${d.items.map(x=>`<div class="mod-detail-item"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>`;
+ el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.querySelectorAll('.mod-library-card').forEach(card=>card.addEventListener('click',()=>renderModLibraryDetail(card.dataset.modlib)));
 
 // ---------------- DriveWise 5-car shortlist ----------------
 let selectedShortCar=null;
@@ -487,6 +590,7 @@ function currentPage(){
   if(document.getElementById('used').style.display==='block') return 'Pre-Owned Cars';
   if(document.getElementById('mods').style.display==='block') return 'Car Mods';
   if(document.getElementById('shortlistPage').style.display==='block') return 'Car Shortlist';
+  if(document.getElementById('modLibraryPage').style.display==='block') return 'Mod Library';
   if(document.getElementById('adminShell').style.display==='block') return 'Admin Dashboard';
   return 'Homepage';
 }
