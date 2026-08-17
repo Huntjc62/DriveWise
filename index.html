@@ -185,6 +185,27 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 .guide-empty{padding:30px;background:#11151a;border:1px solid #2a323b;border-radius:18px;color:#9da6b0}
 @media(max-width:850px){.guides-hero{grid-template-columns:1fr}.guides-feature{grid-template-columns:1fr}.guides-newsletter{display:block}.guides-newsletter form{margin-top:15px;min-width:0}.guides-grid{grid-template-columns:1fr}}
 </style>
+
+<style id="guide-editor-v14-styles">
+.guide-editor-toolbar{display:flex;gap:6px;flex-wrap:wrap;background:#0b0e11;border:1px solid #303841;border-bottom:0;border-radius:9px 9px 0 0;padding:8px}
+.guide-editor-toolbar button{background:#151a20;border:1px solid #303841;color:#d5dbe0;border-radius:6px;padding:7px 10px;cursor:pointer;font-weight:800;font-size:12px}
+.guide-editor-toolbar button:hover{border-color:#d7ff3f;color:#d7ff3f}
+.guide-editor{min-height:300px;background:#0b0e11;border:1px solid #303841;color:#e7ebee;padding:18px;border-radius:0 0 9px 9px;line-height:1.7;outline:none}
+.guide-editor:focus{border-color:#d7ff3f}
+.guide-editor h2{font-size:28px;margin:25px 0 10px}.guide-editor h3{font-size:21px;margin:20px 0 8px}.guide-editor p{margin:0 0 14px}.guide-editor a{color:#d7ff3f}
+.editor-help{font-size:11px;color:#7f8993;margin-top:7px}
+.content-seo-panel{margin-top:18px;background:#0b0e11;border:1px solid #303841;border-radius:14px;padding:18px}
+.content-seo-head{display:flex;justify-content:space-between;align-items:center;gap:15px}.seo-score{font-size:28px;font-weight:900;color:#d7ff3f}
+.seo-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.seo-check{padding:10px;border:1px solid #252c33;border-radius:9px;font-size:12px}.seo-check.good{border-color:#39471a}.seo-check.bad{border-color:#51302f}.seo-check b{display:block;margin-bottom:3px}.seo-check span{color:#9da6b0}
+.guide-reader-page{display:none;padding:55px 0 100px}
+.guide-reader{max-width:900px;margin:0 auto}
+.guide-reader .reader-category{display:inline-block;background:#d7ff3f;color:#080a0d;border-radius:99px;padding:6px 10px;font-size:10px;font-weight:900}
+.guide-reader h1{font-size:clamp(44px,6vw,76px);line-height:.95;letter-spacing:-.065em;margin:15px 0}
+.reader-excerpt{font-size:18px;color:#9da6b0;line-height:1.6;max-width:780px}.reader-meta{color:#707b84;font-size:11px;margin:15px 0 35px}
+.reader-content{font-size:17px;line-height:1.85;color:#d8dde1}.reader-content h2{font-size:31px;line-height:1.15;margin:42px 0 12px;color:#fff}.reader-content h3{font-size:23px;margin:30px 0 10px;color:#fff}.reader-content p{margin:0 0 20px}.reader-content ul,.reader-content ol{margin:0 0 22px;padding-left:25px}.reader-content li{margin-bottom:8px}.reader-content a{color:#d7ff3f}.reader-content blockquote{border-left:3px solid #d7ff3f;padding:5px 20px;color:#aeb6bd;margin:25px 0}.reader-related{margin-top:55px;padding-top:25px;border-top:1px solid #2a323b}.reader-related h2{font-size:24px}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.related-card{background:#11151a;border:1px solid #2a323b;border-radius:14px;padding:15px}.related-card h3{font-size:16px;margin:7px 0}.related-card p{font-size:12px;color:#9da6b0}
+@media(max-width:700px){.seo-checks,.related-grid{grid-template-columns:1fr}.content-seo-head{display:block}.seo-score{margin-top:8px}}
+</style>
 </head>
 <body>
 <header>
@@ -325,6 +346,14 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 
 
 
+
+
+<section id="guideReaderPage" class="guide-reader-page">
+<div class="container">
+  <div class="back" onclick="showGuides()">← Back to Guides</div>
+  <article id="guideReader" class="guide-reader"></article>
+</div>
+</section>
 
 <section id="guidesPage" class="guides-page">
 <div class="container">
@@ -534,13 +563,36 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
     <div class="editor-field"><label>Publish date</label><input id="postDate" type="date"></div>
     <div class="editor-field"><label>Feature as monthly newsletter?</label><select id="postFeatured"><option value="no">No</option><option value="yes">Yes — make this the Monthly DriveWise</option></select></div>
     <div class="editor-field wide"><label>Short description / excerpt</label><input id="postExcerpt" placeholder="A short description used on the guides page."></div>
-    <div class="editor-field wide"><label>Article content</label><textarea id="postBody" placeholder="Write the article here. You can use plain text with paragraphs."></textarea></div>
+    <div class="editor-field wide">
+<label>Article content</label>
+<div class="guide-editor-toolbar">
+<button type="button" onclick="formatGuide('formatBlock','<h2>')">H2</button>
+<button type="button" onclick="formatGuide('formatBlock','<h3>')">H3</button>
+<button type="button" onclick="formatGuide('formatBlock','<p>')">Paragraph</button>
+<button type="button" onclick="formatGuide('bold')"><b>B</b></button>
+<button type="button" onclick="formatGuide('italic')"><i>I</i></button>
+<button type="button" onclick="formatGuide('insertUnorderedList')">• List</button>
+<button type="button" onclick="formatGuide('insertOrderedList')">1. List</button>
+<button type="button" onclick="insertGuideLink()">🔗 Link</button>
+<button type="button" onclick="formatGuide('formatBlock','<blockquote>')">Quote</button>
+<button type="button" onclick="formatGuide('removeFormat')">Clear format</button>
+</div>
+<div id="postBodyEditor" class="guide-editor" contenteditable="true" data-placeholder="Write your guide here..."></div>
+<textarea id="postBody" style="display:none"></textarea>
+<div class="editor-help">Use H2/H3 for SEO-friendly headings, add descriptive links, and use lists where useful. The content is saved as HTML so formatting is retained on the public guide page.</div>
+</div>
+<div class="editor-field wide">
+<label>SEO title</label><input id="postSeoTitle" maxlength="60" placeholder="Recommended: around 50–60 characters">
+</div>
+<div class="editor-field wide">
+<label>Meta description</label><textarea id="postMetaDescription" style="min-height:85px" maxlength="160" placeholder="Recommended: around 140–160 characters"></textarea>
+</div>
   </div>
   <div class="garage-actions">
-    <button class="btn" onclick="publishDriveWisePost()">Publish article</button>
+    <button class="btn" onclick="checkPostSEO()">Run SEO check</button><button class="btn" onclick="publishDriveWisePost()">Publish article</button>
     <button class="parkers-btn" onclick="clearPostEditor()">Clear</button>
   </div>
-  <div id="publishMessage" class="notice" style="display:none"></div>
+  <div id="publishMessage" class="notice" style="display:none"></div><div id="contentSeoPanel" class="content-seo-panel" style="display:none"></div>
   <div class="published-posts" id="publishedPostsAdmin"></div>
 </div>
 <div class="admin-panel" style="margin-bottom:18px">
@@ -569,8 +621,8 @@ footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-s
 <footer><div class="container">© 2026 DriveWise. Built for people who care what they drive. <span style="float:right">Information only — always check UK roadworthiness, insurance and modification requirements before making changes.</span></div></footer>
 
 <script>
-function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
-function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function showHome(){document.getElementById('home').style.display='grid';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('guideReaderPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
+function openSection(which){document.getElementById('home').style.display='none';document.getElementById('used').style.display=which==='used'?'block':'none';document.getElementById('mods').style.display=which==='mods'?'block':'none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('guideReaderPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';window.scrollTo(0,0)}
 
 function modPlan(){
  const goal=document.getElementById('modgoal').value,budget=Number(document.getElementById('modbudget').value)||0,road=document.getElementById('roaduse').value;
@@ -585,6 +637,56 @@ showHome();
 
 
 
+
+// ---------------- Guide editor + content SEO ----------------
+function formatGuide(command,value=null){
+ const editor=document.getElementById('postBodyEditor'); if(!editor)return;
+ editor.focus(); document.execCommand(command,false,value);
+}
+function insertGuideLink(){
+ const url=prompt('Enter the full URL for the link:');
+ if(!url)return;
+ const text=prompt('Link text:',url);
+ if(!text)return;
+ const editor=document.getElementById('postBodyEditor');editor.focus();
+ document.execCommand('createLink',false,url);
+}
+function editorHTML(){
+ const editor=document.getElementById('postBodyEditor');
+ const html=editor?editor.innerHTML.trim():'';
+ document.getElementById('postBody').value=html;
+ return html;
+}
+function textFromEditor(){
+ const editor=document.getElementById('postBodyEditor');
+ return editor?editor.innerText.trim():'';
+}
+function checkPostSEO(){
+ const title=document.getElementById('postTitle').value.trim();
+ const seoTitle=(document.getElementById('postSeoTitle').value||title).trim();
+ const meta=document.getElementById('postMetaDescription').value.trim();
+ const excerpt=document.getElementById('postExcerpt').value.trim();
+ const bodyHtml=editorHTML(), text=textFromEditor();
+ const headings=(bodyHtml.match(/<h2\b/gi)||[]).length+(bodyHtml.match(/<h3\b/gi)||[]).length;
+ const links=(bodyHtml.match(/<a\b/gi)||[]).length;
+ const paragraphs=(bodyHtml.match(/<p\b/gi)||[]).length;
+ const words=text?text.split(/\s+/).filter(Boolean).length:0;
+ const checks=[
+  ['SEO title',seoTitle.length>=30&&seoTitle.length<=60,`${seoTitle.length}/60 characters`],
+  ['Meta description',meta.length>=120&&meta.length<=160,`${meta.length}/160 characters`],
+  ['H1 / article title',title.length>0,true],
+  ['Useful length',words>=500,`${words} words (500+ recommended for a substantial guide)`],
+  ['Headings',headings>=2,`${headings} H2/H3 headings`],
+  ['Internal/external links',links>=1,`${links} links`],
+  ['Excerpt',excerpt.length>=80,`${excerpt.length} characters`],
+  ['Structured content',paragraphs>=3,`${paragraphs} paragraphs`]
+ ];
+ let score=Math.round(checks.filter(x=>x[1]).length/checks.length*100);
+ document.getElementById('contentSeoPanel').style.display='block';
+ document.getElementById('contentSeoPanel').innerHTML=`<div class="content-seo-head"><div><div class="eyebrow">Content SEO Checker</div><b>Guide readiness</b></div><div class="seo-score">${score}/100</div></div><div class="seo-checks">${checks.map(x=>`<div class="seo-check ${x[1]?'good':'bad'}"><b>${x[1]?'✓':'✕'} ${x[0]}</b><span>${x[2]}</span></div>`).join('')}</div><div class="notice" style="margin-top:12px">${score>=80?'Strong starting point. Add internal links and improve any remaining failed checks before publishing.':'Improve the failed checks before publishing. Focus on title/meta length, useful content depth, headings and links.'}</div>`;
+ return score;
+}
+
 // ---------------- Dedicated DriveWise Guides page ----------------
 let activeGuideCategory='All';
 function showGuides(){
@@ -594,6 +696,7 @@ function showGuides(){
  document.getElementById('shortlistPage').style.display='none';
  document.getElementById('modLibraryPage').style.display='none';
  document.getElementById('garagePage').style.display='none';
+ document.getElementById('guideReaderPage').style.display='none';
  document.getElementById('adminLogin').style.display='none';
  document.getElementById('adminShell').style.display='none';
  document.getElementById('guidesPage').style.display='block';
@@ -706,23 +809,35 @@ function renderGuidesContent(){
 }
 function openPublishedPost(id){
  const post=getDriveWisePosts().find(p=>p.id===id);if(!post)return;
- const overlay=document.createElement('div');overlay.className='admin-login';overlay.style.display='flex';overlay.style.position='fixed';overlay.style.inset='0';overlay.style.zIndex='9999';overlay.id='postOverlay';
- overlay.innerHTML=`<div class="login-box" style="max-width:820px;max-height:85vh;overflow:auto;text-align:left"><span class="tag">${post.category}</span><h2 style="font-size:38px;margin:12px 0">${post.title}</h2><div class="audit-meta">${formatPostDate(post.date)}</div><div style="white-space:pre-wrap;color:#cbd1d6;line-height:1.75;margin-top:20px">${post.body}</div><button class="btn" style="margin-top:24px" onclick="document.getElementById('postOverlay').remove()">Close</button></div>`;
- document.body.appendChild(overlay);
+ document.getElementById('home').style.display='none';
+ document.getElementById('used').style.display='none';
+ document.getElementById('mods').style.display='none';
+ document.getElementById('shortlistPage').style.display='none';
+ document.getElementById('modLibraryPage').style.display='none';
+ document.getElementById('garagePage').style.display='none';
+ document.getElementById('guidesPage').style.display='none';
+ document.getElementById('adminLogin').style.display='none';
+ document.getElementById('adminShell').style.display='none';
+ document.getElementById('guideReaderPage').style.display='block';
+ const related=getDriveWisePosts().filter(p=>p.id!==id&&p.category===post.category).slice(0,3);
+ document.getElementById('guideReader').innerHTML=`<article><span class="reader-category">${post.category}</span><h1>${post.title}</h1><p class="reader-excerpt">${post.excerpt||''}</p><div class="reader-meta">${formatPostDate(post.date)} · DriveWise</div><div class="reader-content">${post.body}</div></article><div class="reader-related"><h2>More from DriveWise</h2><div class="related-grid">${related.map(p=>`<div class="related-card"><span class="tag">${p.category}</span><h3>${p.title}</h3><p>${p.excerpt||''}</p><button class="parkers-btn" onclick="openPublishedPost('${p.id}')">Read guide →</button></div>`).join('')}</div></div>`;
+ window.scrollTo(0,0);
+ trackPage();
 }
 function publishDriveWisePost(){
- const title=document.getElementById('postTitle').value.trim(),category=document.getElementById('postCategory').value,date=document.getElementById('postDate').value,excerpt=document.getElementById('postExcerpt').value.trim(),body=document.getElementById('postBody').value.trim(),featured=document.getElementById('postFeatured').value==='yes';
+ const title=document.getElementById('postTitle').value.trim(),category=document.getElementById('postCategory').value,date=document.getElementById('postDate').value,excerpt=document.getElementById('postExcerpt').value.trim(),body=editorHTML(),featured=document.getElementById('postFeatured').value==='yes',seoTitle=document.getElementById('postSeoTitle').value.trim()||title,metaDescription=document.getElementById('postMetaDescription').value.trim();
  const msg=document.getElementById('publishMessage');
  if(!title||!date||!body){msg.style.display='block';msg.textContent='Please add a title, publish date and article content.';return}
  let posts=getDriveWisePosts();
  if(featured)posts=posts.map(p=>({...p,featured:false}));
- const post={id:'post-'+Date.now(),title,category,date,excerpt,body,featured};
+ const post={id:'post-'+Date.now(),title,category,date,excerpt,body,featured,seoTitle,metaDescription};
  posts.unshift(post);saveDriveWisePosts(posts);
  msg.style.display='block';msg.textContent=`Published: ${title}`;
  clearPostEditor(false);renderGuidesContent();renderDedicatedGuides();renderPublishedPostsAdmin();
 }
 function clearPostEditor(show=true){
- ['postTitle','postExcerpt','postBody'].forEach(id=>document.getElementById(id).value='');
+ ['postTitle','postExcerpt','postBody','postSeoTitle','postMetaDescription'].forEach(id=>document.getElementById(id).value='');
+ document.getElementById('postBodyEditor').innerHTML='';document.getElementById('contentSeoPanel').style.display='none';
  document.getElementById('postDate').value=new Date().toISOString().slice(0,10);
  document.getElementById('postFeatured').value='no';
  if(show){const m=document.getElementById('publishMessage');m.style.display='none'}
@@ -811,7 +926,7 @@ function renderGarageProfile(c){
  el.innerHTML=`<div class="eyebrow">Saved car</div><h2>${title}</h2><p>${c.year} ${c.engine?'· '+c.engine:''} ${c.fuel?'· '+c.fuel:''} ${c.gear?'· '+c.gear:''}</p><div class="garage-profile-grid"><div class="garage-mini"><small>Make</small><b>${c.make}</b></div><div class="garage-mini"><small>Model</small><b>${c.model}</b></div><div class="garage-mini"><small>Trim</small><b>${c.trim||'Not added'}</b></div><div class="garage-mini"><small>Registration</small><b>${c.reg||'Not added'}</b></div></div>`;
 }
 function showGarage(){
- document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('garagePage').style.display='block';
+ document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('modLibraryPage').style.display='none';document.getElementById('garagePage').style.display='none';document.getElementById('guidesPage').style.display='none';document.getElementById('guideReaderPage').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('garagePage').style.display='block';
  window.scrollTo(0,0);populateMyGarageMakes();loadMyGarage();trackPage();
 }
 function clearMyGarage(){
@@ -1043,6 +1158,7 @@ function currentPage(){
   if(document.getElementById('modLibraryPage').style.display==='block') return 'Mod Library';
   if(document.getElementById('garagePage').style.display==='block') return 'My Garage';
   if(document.getElementById('guidesPage').style.display==='block') return 'Guides';
+  if(document.getElementById('guideReaderPage').style.display==='block') return 'Guide Article';
   if(document.getElementById('adminShell').style.display==='block') return 'Admin Dashboard';
   return 'Homepage';
 }
@@ -1103,7 +1219,7 @@ function runSEOAudit(){
 function showAdminLogin(){document.getElementById('home').style.display='none';document.getElementById('used').style.display='none';document.getElementById('mods').style.display='none';document.getElementById('shortlistPage').style.display='none';document.getElementById('adminShell').style.display='none';document.getElementById('adminLogin').style.display='grid';window.scrollTo(0,0)}
 function adminLogin(){
  if(document.getElementById('adminUser').value==='admin'&&document.getElementById('adminPass').value==='admin123'){
-   sessionStorage.setItem('dwAdmin','1');document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';document.getElementById('postDate').value=new Date().toISOString().slice(0,10);renderPublishedPostsAdmin();renderAnalytics();runSEOAudit();window.scrollTo(0,0);
+   sessionStorage.setItem('dwAdmin','1');document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';document.getElementById('postDate').value=new Date().toISOString().slice(0,10);document.getElementById('postBodyEditor').innerHTML='';renderPublishedPostsAdmin();renderAnalytics();runSEOAudit();window.scrollTo(0,0);
  }else document.getElementById('loginError').style.display='block';
 }
 function adminLogout(){sessionStorage.removeItem('dwAdmin');showHome()}
@@ -1115,7 +1231,7 @@ openSection=function(which){_openSection(which);trackPage()};
 const _showHome=showHome;
 showHome=function(){_showHome();trackPage()};
 trackPage();
-if(sessionStorage.getItem('dwAdmin')==='1'){document.getElementById('home').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';document.getElementById('postDate').value=new Date().toISOString().slice(0,10);renderPublishedPostsAdmin();renderAnalytics();runSEOAudit()}
+if(sessionStorage.getItem('dwAdmin')==='1'){document.getElementById('home').style.display='none';document.getElementById('adminLogin').style.display='none';document.getElementById('adminShell').style.display='block';document.getElementById('postDate').value=new Date().toISOString().slice(0,10);document.getElementById('postBodyEditor').innerHTML='';renderPublishedPostsAdmin();renderAnalytics();runSEOAudit()}
 </script>
 </body>
 </html>
